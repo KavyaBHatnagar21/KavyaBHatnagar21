@@ -1,0 +1,93 @@
+<!-- Navbar -->
+<nav
+  id="navbar"
+  class="fixed top-0 w-full bg-white/80 backdrop-blur-sm border-b border-gray-200 z-50 transition-transform duration-300 ease-in-out"
+>
+  <div
+    class="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between"
+  >
+    <a
+      href="/"
+      class="font-bold text-black border-[#f5f5f5] text-md tracking-tighter leading-tight"
+      >KAVYA</a
+    >
+
+    <!-- Desktop Nav Links -->
+    <div class="hidden lg:flex items-center gap-8">
+      <a
+        href="/work.html"
+        class="text-black text-[18px] tracking-tight hover:opacity-60 transition"
+        >Work</a
+      >
+      <a
+        href="/about.html"
+        class="text-black text-[18px] tracking-tight hover:opacity-60 transition"
+        >About</a
+      >
+      <a
+        href="/contact.html"
+        class="text-black text-[18px] tracking-tight hover:opacity-60 transition"
+        >Contact</a
+      >
+    </div>
+
+    <!-- Mobile Hamburger Button -->
+    <button
+      id="menu-open-btn"
+      class="lg:hidden flex flex-col justify-center items-center gap-1 p-2"
+      onclick="openMobileMenu()"
+    >
+      <span class="block w-5 h-0.5 bg-black"></span>
+      <span class="block w-4 h-0.5 bg-black"></span>
+      <span class="block w-5 h-0.5 bg-black"></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Full-Page Menu -->
+<div
+  id="mobile-menu"
+  class="fixed inset-0 z-[60] bg-white flex flex-col lg:hidden"
+>
+  <!-- Close Button -->
+  <div class="flex justify-end px-6 py-3">
+    <button class="menu-close p-2" onclick="closeMobileMenu()">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="black"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile Nav Links -->
+  <div class="flex flex-col items-center justify-center flex-1 gap-10">
+    <a
+      href="/work.html"
+      class="menu-link font-bold text-black text-md tracking-tighter leading-tight hover:opacity-60"
+      onclick="closeMobileMenu()"
+      >Work</a
+    >
+    <a
+      href="/about.html"
+      class="menu-link font-bold text-black text-md tracking-tighter leading-tight hover:opacity-60"
+      onclick="closeMobileMenu()"
+      >About</a
+    >
+    <a
+      href="/contact.html"
+      class="menu-link font-bold text-black text-md tracking-tighter leading-tight hover:opacity-60"
+      onclick="closeMobileMenu()"
+      >Contact</a
+    >
+  </div>
+</div>

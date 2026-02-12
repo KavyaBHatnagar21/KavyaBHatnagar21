@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__playwright__execute-code",
+      "mcp__playwright__get-text-snapshot",
+      "Bash(echo:*)",
+      "Bash(curl:*)",
+      "mcp__playwright__get-screenshot",
+      "Bash(python3:*)",
+      "mcp__playwright__get-full-snapshot"
+    ]
+  }
+}

@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en" class="text-[24px] lg:text-[30px]">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Work - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              inter: ["Inter", "sans-serif"],
+            },
+            keyframes: {
+              headerSlideIn: {
+                from: { opacity: "0", transform: "translateY(-100%)" },
+                to: { opacity: "1", transform: "translateY(0)" },
+              },
+              fadeInUp: {
+                from: { opacity: "0", transform: "translateY(20px)" },
+                to: { opacity: "1", transform: "translateY(0)" },
+              },
+              scaleIn: {
+                from: { opacity: "0", transform: "scale(0)" },
+                to: { opacity: "1", transform: "scale(1)" },
+              },
+            },
+            animation: {
+              "header-slide": "headerSlideIn 0.6s ease-out forwards",
+              "fade-in-up-1": "fadeInUp 0.6s ease-out 0.1s forwards",
+              "fade-in-up-2": "fadeInUp 0.6s ease-out 0.2s forwards",
+              "fade-in-up-4": "fadeInUp 0.6s ease-out 0.4s forwards",
+              "fade-in-up-5": "fadeInUp 0.6s ease-out 0.5s forwards",
+              "scale-in-3": "scaleIn 0.6s ease-out 0.3s forwards",
+            },
+          },
+        },
+      }
+    </script>
+    <style>
+      #navbar {
+        transition: transform 0.3s ease-in-out;
+      }
+      #navbar.navbar-hidden {
+        transform: translateY(-100%);
+      }
+
+      /* Mobile Menu */
+      #mobile-menu {
+        transform: translateY(-100%);
+        opacity: 0;
+        transition:
+          transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+          opacity 0.6s ease;
+        pointer-events: none;
+      }
+      #mobile-menu.menu-open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      /* Menu nav link animation */
+      .menu-link {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      #mobile-menu.menu-open .menu-link {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      #mobile-menu.menu-open .menu-link:nth-child(1) {
+        transition-delay: 0.25s;
+      }
+      #mobile-menu.menu-open .menu-link:nth-child(2) {
+        transition-delay: 0.4s;
+      }
+      #mobile-menu.menu-open .menu-link:nth-child(3) {
+        transition-delay: 0.55s;
+      }
+
+      /* Close button fade */
+      .menu-close {
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+      #mobile-menu.menu-open .menu-close {
+        opacity: 1;
+        transition-delay: 0.2s;
+      }
+    </style>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Load header
+        fetch("header.html")
+          .then((res) => res.text())
+          .then((html) => {
+            document.getElementById("header-placeholder").innerHTML = html
+
+            // Initialize navbar scroll behavior after header loads
+            let lastScrollTop = 0
+            const navbar = document.getElementById("navbar")
+            let scrollDirection = null
+
+            window.addEventListener("scroll", () => {
+              const currentScroll =
+                window.pageYOffset || document.documentElement.scrollTop
+
+              if (currentScroll > 100) {
+                if (
+                  currentScroll > lastScrollTop &&
+                  scrollDirection !== "down"
+                ) {
+                  scrollDirection = "down"
+                  navbar.style.transform = "translateY(-100%)"
+                } else if (
+                  currentScroll < lastScrollTop &&
+                  scrollDirection !== "up"
+                ) {
+                  scrollDirection = "up"
+                  navbar.style.transform = "translateY(0)"
+                }
+              } else {
+                navbar.style.transform = "translateY(0)"
+                scrollDirection = null
+              }
+
+              lastScrollTop = currentScroll <= 0 ? 0 : currentScroll
+            })
+          })
+
+        // Load footer
+        fetch("footer.html")
+          .then((res) => res.text())
+          .then((html) => {
+            document.getElementById("footer-placeholder").innerHTML = html
+          })
+      })
+
+      // Mobile menu functions
+      function openMobileMenu() {
+        const menu = document.getElementById("mobile-menu")
+        document.body.style.overflow = "hidden"
+        requestAnimationFrame(() => {
+          menu.classList.add("menu-open")
+        })
+      }
+
+      function closeMobileMenu() {
+        const menu = document.getElementById("mobile-menu")
+        menu.classList.remove("menu-open")
+        document.body.style.overflow = ""
+      }
+    </script>
+  </head>
+  <body class="bg-white text-gray-900 font-inter overflow-x-hidden">
+    <!-- Header -->
+    <div id="header-placeholder"></div>
+
+    <!-- Work -->
+    <section class="w-full border-t border-gray-200 px-6 lg:px-20 py-10 pt-24">
+      <!-- Section Header -->
+      <div class="opacity-0 animate-fade-in-up-1 mb-8">
+        <h1
+          class="uppercase font-bold text-black uppercase text-4xl lg:text-6xl tracking-tighter leading-tight"
+        >
+          work
+        </h1>
+      </div>
+
+      <!-- Project Cards -->
+      <div class="flex flex-col lg:grid lg:grid-cols-2 gap-5">
+        <!-- Card 1: Kavya Beauty Products -->
+        <a
+          href="https://dribbble.com/shots/26134881-Cosmetics-App-UI-Design-Beauty-Ecommerce-Mobile-App"
+          class="relative block w-full aspect-square rounded-sm overflow-hidden group"
+        >
+          <img
+            decoding="async"
+            loading="lazy"
+            src="assets/images/fashion-products.webp"
+            alt="Stone Mind"
+            class="block w-full h-full object-cover object-center"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300"
+          ></div>
+          <div
+            class="absolute bottom-0 left-0 p-5 lg:opacity-0 lg:group-hover:opacity-100 lg:translate-y-4 lg:group-hover:translate-y-0 transition-all duration-300"
+          >
+            <h4 class="text-white text-sm lg:text-2xl tracking-tight">
+              Beauty Ecommerce Mobile App UI UX Design
+            </h4>
+          </div>
+        </a>
+
+        <!-- Card 3: Handbag Store -->
+        <a
+          href="https://dribbble.com/shots/26471442-High-Fashion-Leather-Brand-Landing-Page-Design"
+          class="relative block w-full aspect-square rounded-sm overflow-hidden group"
+        >
+          <img
+            decoding="async"
+            loading="lazy"
+            src="assets/images/bag-website-design.png"
+            alt="Visual Screen Models"
+            class="block w-full h-full object-cover object-top object-center"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300"
+          ></div>
+          <div
+            class="absolute bottom-0 left-0 p-5 lg:opacity-0 lg:group-hover:opacity-100 lg:translate-y-4 lg:group-hover:translate-y-0 transition-all duration-300"
+          >
+            <h4 class="text-white text-sm lg:text-2xl tracking-tight">
+              Luxury Leather Handbag Shopify Store
+            </h4>
+          </div>
+        </a>
+
+        <!-- Card 2: Bakery Brand -->
+        <a
+          href="https://dribbble.com/shots/26986886-Cr-me-Bakery-Website-UI-UX-Design"
+          class="relative block w-full aspect-square rounded-sm overflow-hidden group"
+        >
+          <img
+            decoding="async"
+            loading="lazy"
+            src="assets/images/cake-website-design.webp"
+            alt="Violet Orbit"
+            class="block w-full h-full object-cover object-top object-center"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300"
+          ></div>
+          <div
+            class="absolute bottom-0 left-0 p-5 lg:opacity-0 lg:group-hover:opacity-100 lg:translate-y-4 lg:group-hover:translate-y-0 transition-all duration-300"
+          >
+            <h4 class="text-white text-sm lg:text-2xl tracking-tight">
+              Bakery Ecommerce Website UI UX Design
+            </h4>
+          </div>
+        </a>
+
+        <!-- Card 7: Flexible Area Models -->
+        <a
+          href="https://dribbble.com/shots/26975020-Aur-a-Jewellery-Brand-Web-Design"
+          class="relative block w-full aspect-square rounded-sm overflow-hidden group"
+        >
+          <img
+            decoding="async"
+            loading="lazy"
+            src="assets/images/jewellery.webp"
+            alt="Flexible Area Models"
+            class="block w-full h-full object-cover object-top object-center"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300"
+          ></div>
+          <div
+            class="absolute bottom-0 left-0 p-5 lg:opacity-0 lg:group-hover:opacity-100 lg:translate-y-4 lg:group-hover:translate-y-0 transition-all duration-300"
+          >
+            <h4 class="text-white text-sm lg:text-2xl tracking-tight">
+              Jewellery Ecommerce Landing Page Design
+            </h4>
+          </div>
+        </a>
+
+        <!-- Card 9: Matcha brand -->
+        <a
+          href="https://dribbble.com/shots/26132740-Matcha-Bliss-Landing-Page-Animation"
+          class="relative block w-full aspect-square rounded-sm overflow-hidden group"
+        >
+          <img
+            decoding="async"
+            loading="lazy"
+            src="assets/images/matcha-website.webp"
+            alt="Flexible Area Models"
+            class="block w-full h-full object-cover object-center"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300"
+          ></div>
+          <div
+            class="absolute bottom-0 left-0 p-5 lg:opacity-0 lg:group-hover:opacity-100 lg:translate-y-4 lg:group-hover:translate-y-0 transition-all duration-300"
+          >
+            <h4 class="text-white text-sm lg:text-2xl tracking-tight">
+              Matcha Brand Animated Landing Page
+            </h4>
+          </div>
+        </a>
+
+        <!-- Card 5: Flexible Area Models -->
+        <a
+          href="https://kavyas-stellar-site-3a6347.webflow.io/"
+          class="relative block w-full aspect-square rounded-sm overflow-hidden group"
+        >
+          <img
+            decoding="async"
+            loading="lazy"
+            src="assets/images/portfolio-website.webp"
+            alt="Flexible Area Models"
+            class="block w-full h-full object-cover object-center"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300"
+          ></div>
+          <div
+            class="absolute bottom-0 left-0 p-5 lg:opacity-0 lg:group-hover:opacity-100 lg:translate-y-4 lg:group-hover:translate-y-0 transition-all duration-300"
+          >
+            <h4 class="text-white text-sm lg:text-2xl tracking-tight">
+              Personal Portfolio UX/UI Website
+            </h4>
+          </div>
+        </a>
+
+        <!-- Card 6: Flexible Area Models -->
+        <a
+          href="https://dribbble.com/shots/26135838-Minimal-Landing-Page-Design-QuietInbox"
+          class="relative block w-full aspect-square rounded-sm overflow-hidden group"
+        >
+          <img
+            decoding="async"
+            loading="lazy"
+            src="assets/images/saas-website.webp"
+            alt="Flexible Area Models"
+            class="block w-full h-full object-cover object-top object-center"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300"
+          ></div>
+          <div
+            class="absolute bottom-0 left-0 p-5 lg:opacity-0 lg:group-hover:opacity-100 lg:translate-y-4 lg:group-hover:translate-y-0 transition-all duration-300"
+          >
+            <h4 class="text-white text-sm lg:text-2xl tracking-tight">
+              Software as a Service Product UI UX Design
+            </h4>
+          </div>
+        </a>
+
+        <!-- Card 8: Flexible Area Models -->
+        <a
+          href="https://dribbble.com/shots/26131381-Plant-Whisper-Landing-Page-UI"
+          class="relative block w-full aspect-square rounded-sm overflow-hidden group"
+        >
+          <img
+            decoding="async"
+            loading="lazy"
+            src="assets/images/plant-website.webp"
+            alt="Flexible Area Models"
+            class="block w-full h-full object-cover object-top object-center"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300"
+          ></div>
+          <div
+            class="absolute bottom-0 left-0 p-5 lg:opacity-0 lg:group-hover:opacity-100 lg:translate-y-4 lg:group-hover:translate-y-0 transition-all duration-300"
+          >
+            <h4 class="text-white text-sm lg:text-2xl tracking-tight">
+              Plant Brand Landing Page Design
+            </h4>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+  </body>
+</html>

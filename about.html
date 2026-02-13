@@ -2,8 +2,11 @@
 <html lang="en" class="text-[24px] lg:text-[30px]">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Contact - Portfolio</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>About - Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -92,6 +95,19 @@
       #mobile-menu.menu-open .menu-close {
         opacity: 1;
         transition-delay: 0.2s;
+      }
+
+      /* Scroll reveal for about content */
+      .about-reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+          opacity 0.6s ease-out,
+          transform 0.6s ease-out;
+      }
+      .about-reveal.revealed {
+        opacity: 1;
+        transform: translateY(0);
       }
 
       /* Custom Cursor */
@@ -183,6 +199,24 @@
             // Delay initialization to ensure all content is loaded
             setTimeout(initCursor, 100)
           })
+
+        // Scroll-reveal for about content
+        const revealItems = document.querySelectorAll(".about-reveal")
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: "0px 0px -50px 0px",
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("revealed")
+              observer.unobserve(entry.target)
+            }
+          })
+        }, observerOptions)
+
+        revealItems.forEach((item) => observer.observe(item))
       })
 
       // Mobile menu functions
@@ -228,110 +262,161 @@
     <!-- Header -->
     <div id="header-placeholder"></div>
 
-    <!-- Contact Section -->
+    <!-- About Hero: Large Name -->
     <section
-      class="w-full flex flex-col items-center justify-center px-6 lg:px-20 min-h-screen pt-24 pb-10"
+      class="w-full flex flex-col justify-center px-6 lg:px-20 pt-32 pb-10"
     >
-      <div class="flex flex-col items-center max-w-2xl w-full">
-        <!-- Heading -->
-        <div class="opacity-0 animate-fade-in-up-1 mb-4">
-          <h1
-            class="font-bold text-black uppercase text-4xl lg:text-6xl tracking-tighter leading-tight text-center"
-          >
-            GET IN TOUCH
-          </h1>
-        </div>
-
-        <!-- Availability Indicator -->
-        <div
-          class="flex items-center gap-2 opacity-0 animate-fade-in-up-2 mb-8"
+      <div class="opacity-0 animate-fade-in-up-1">
+        <h1
+          class="font-bold text-black uppercase text-4xl lg:text-6xl tracking-tighter pb-2.5 leading-none text-center"
         >
-          <span class="relative flex h-2 w-2">
-            <!-- Ripple -->
-            <span
-              class="animate-ping absolute inline-flex h-full w-full rounded-full bg-black opacity-75"
-            ></span>
-
-            <!-- Solid Black Dot -->
-            <span
-              class="relative inline-flex rounded-full h-2 w-2 bg-black"
-            ></span>
-          </span>
-
-          <span class="text-black text-sm lg:text-[18px] tracking-tight">
-            Available For Work
-          </span>
-        </div>
-
-        <!-- Email -->
-        <div
-          class="flex items-center gap-2 opacity-0 animate-fade-in-up-3"
+          KAVYA
+        </h1>
+      </div>
+      <div class="opacity-0 animate-fade-in-up-2">
+        <h1
+          class="font-bold text-black uppercase text-4xl lg:text-6xl tracking-tighter leading-none text-center"
         >
-          <a
-            href="mailto:contact@heykavya.com"
-            class="text-black text-sm lg:text-[18px] tracking-tight hover:opacity-60 transition"
-          >
-            contact@heykavya.com
-          </a>
-          <button
-            onclick="navigator.clipboard.writeText('contact@heykavya.com')"
-            class="flex items-center justify-center p-2 cursor-pointer bg-transparent border-none hover:opacity-60 transition"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-            >
-              <path
-                d="M13.89 1.668H1.668v12.222h12.222V1.668z"
-                stroke="black"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M17 6.11h1.332v12.222H6.109V17"
-                stroke="black"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </button>
-        </div>
+          BHATNAGAR
+        </h1>
+      </div>
+    </section>
 
-        <!-- Phone -->
-        <div class="opacity-0 animate-fade-in-up-4 mb-8 ">
-          <a
-            href="tel:+919187022234"
-            class="text-black text-sm lg:text-[18px] tracking-tight hover:opacity-60 transition"
-          >
-            +91 91870 22234
-          </a>
-        </div>
-
-        <!-- Social Links -->
-        <div
-          class="flex items-center gap-4 opacity-0 animate-fade-in-up-5"
+    <!-- About Content -->
+    <section class="w-full px-6 lg:px-20 pb-16">
+      <!-- Section Header -->
+      <div
+        class="flex justify-between mb-8 opacity-0 animate-fade-in-up-3"
+      >
+        <h5 class="text-black text-sm tracking-tight">about.</h5>
+        <a
+          href="https://in.pinterest.com/brown_horizon/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="bg-neutral-100 text-black text-xs lg:text-[18px] tracking-tight px-4 py-2 rounded-sm hover:opacity-80 transition"
+          >Pinterest</a
         >
-          <a
-            href="https://dribbble.com/kavya-ak_20/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="bg-neutral-100 text-black text-sm lg:text-[18px] tracking-tight px-6 py-2 rounded-sm hover:opacity-80 transition"
+      </div>
+
+      <!-- Bold Paragraph -->
+      <div class="mb-12 opacity-0 animate-fade-in-up-4">
+        <p
+          class="text-black font-bold leading-tight text-base opacity-0 animate-fade-in-up-5 lg:max-w-sm"
+        >
+          I help ecommerce and D2C brands turn their Shopify stores into
+          sales-driven, trustworthy experiences — not just good-looking
+          websites.
+        </p>
+      </div>
+
+      <!-- Image + Description Row -->
+      <div
+        class="about-reveal flex flex-col justify-center lg:flex-row items-center gap-8 lg:gap-16 max-w-lg mx-auto mb-6"
+      >
+        <!-- Image -->
+        <div class="relative aspect-[4/5] rounded-sm overflow-hidden">
+          <img
+            decoding="async"
+            loading="lazy"
+            src="assets/images/UI-UX.jpg"
+            alt="Kavya Bhatnagar"
+            class="block w-full h-full object-cover object-center"
+          />
+        </div>
+
+        <!-- Description Text -->
+        <div class="about-reveal lg:pb-4">
+          <p
+            class="text-black font-bold leading-tight text-base pb-4 opacity-0 animate-fade-in-up-5 lg:max-w-sm"
           >
-            Dribbble
-          </a>
-          <a
-            href="https://www.behance.net/kavyabhatnagar-ak_20"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="bg-neutral-100 text-black text-sm lg:text-[18px] tracking-tight px-6 py-2 rounded-sm hover:opacity-80 transition"
+            How do I achieve this?
+          </p>
+          <p
+            class="text-gray-900 leading-tight text-sm lg:text-[18px] lg:max-w-xs"
           >
-            Behance
-          </a>
+            I design Ecommerce store experiences with a strong focus on both UX
+            (user experience) and UI (user interface) — because how a store
+            works is just as important as how it looks.
+            <br /><br />UX design relates to how well the website works, what
+            the user experiences and how they feel when using it, and UI design
+            focuses on how that software product looks. Both are important
+            considerations and play a vital role when designing Shopify websites
+            and apps. <br /><br />
+            Alongside design, I implement on-page SEO best practices, Google
+            Analytics integration, and basic email automation so your store is
+            not only discoverable on search engines, but also set up to track
+            user behaviour and convert visitors more effectively. Every store is
+            built with long-term visibility, usability, and growth in mind.
+          </p>
+        </div>
+      </div>
+
+      <!-- Image + Other Things Desc Row -->
+      <div
+        class="about-reveal flex flex-col justify-center lg:flex-row items-center gap-8 pt-10 lg:gap-16 max-w-lg mx-auto"
+      >
+        <!-- Other things I enjoy -->
+        <div class="about-reveal lg:pb-4">
+          <p
+            class="text-black font-bold leading-tight text-base pb-4 opacity-0 animate-fade-in-up-5 lg:max-w-sm"
+          >
+            Other things I enjoy...
+          </p>
+          <p
+            class="text-gray-900 leading-tight text-sm lg:text-[18px] lg:max-w-xs"
+          >
+            Apart from design, I&apos;m drawn to things that slow me down and make me
+            more present — cooking, photography, movement, and time in nature.
+            These moments help me stay curious and observant, and they influence
+            how I design thoughtfully.
+          </p>
+        </div>
+
+        <!-- Grid Images -->
+        <div class="grid grid-cols-2 grid-rows-2 gap-2 w-full max-w-xs mx-auto lg:mx-0">
+          <!-- Image 1 -->
+          <div class="relative aspect-square rounded-sm overflow-hidden">
+            <img
+              decoding="async"
+              loading="lazy"
+              src="assets/images/img-1.png"
+              alt="Image 1"
+              class="block w-full h-full object-cover object-center"
+            />
+          </div>
+
+          <!-- Image 2 -->
+          <div class="relative aspect-square rounded-sm overflow-hidden">
+            <img
+              decoding="async"
+              loading="lazy"
+              src="assets/images/img-2.jpg"
+              alt="Image 2"
+              class="block w-full h-full object-cover object-center"
+            />
+          </div>
+
+          <!-- Image 3 -->
+          <div class="relative aspect-square rounded-sm overflow-hidden">
+            <img
+              decoding="async"
+              loading="lazy"
+              src="assets/images/img-3.png"
+              alt="Image 3"
+              class="block w-full h-full object-cover object-center"
+            />
+          </div>
+
+          <!-- Image 4 -->
+          <div class="relative aspect-square rounded-sm overflow-hidden">
+            <img
+              decoding="async"
+              loading="lazy"
+              src="assets/images/img-4.jpg"
+              alt="Image 4"
+              class="block w-full h-full object-cover object-center"
+            />
+          </div>
         </div>
       </div>
     </section>

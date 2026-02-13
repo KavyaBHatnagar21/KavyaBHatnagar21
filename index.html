@@ -2,7 +2,10 @@
 <html lang="en" class="text-[24px] lg:text-[30px]">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
     <title>Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -109,6 +112,40 @@
         opacity: 1;
         transition-delay: 0.2s;
       }
+
+      /* Custom Cursor */
+      * {
+        cursor: none !important;
+      }
+
+      #cursor {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        pointer-events: none;
+        background: white;
+        mix-blend-mode: difference;
+        transform: translate(-50%, -50%);
+        transition: transform 0.15s ease;
+        z-index: 9999;
+      }
+
+      .cursor-active {
+        transform: translate(-50%, -50%) scale(1.6);
+      }
+
+      /* Disable cursor on mobile */
+      @media (max-width: 768px) {
+        #cursor {
+          display: none;
+        }
+        body {
+          cursor: auto;
+        }
+      }
     </style>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
@@ -157,6 +194,15 @@
             document.getElementById("footer-placeholder").innerHTML = html
           })
 
+        // Load cursor
+        fetch("cursor.html")
+          .then((res) => res.text())
+          .then((html) => {
+            document.body.insertAdjacentHTML("beforeend", html)
+            // Delay initialization to ensure all content is loaded
+            setTimeout(initCursor, 100)
+          })
+
         // Scroll-reveal animation for About section
         const aboutItems = document.querySelectorAll(".about-item")
         const observerOptions = {
@@ -189,6 +235,29 @@
         const menu = document.getElementById("mobile-menu")
         menu.classList.remove("menu-open")
         document.body.style.overflow = ""
+      }
+
+      // Custom cursor functionality
+      function initCursor() {
+        const cursor = document.getElementById("cursor")
+        if (!cursor) return
+
+        // Track mouse movement
+        document.addEventListener("mousemove", (e) => {
+          cursor.style.top = `${e.clientY}px`
+          cursor.style.left = `${e.clientX}px`
+        })
+
+        // Add hover effect on clickable elements
+        const clickables = document.querySelectorAll("a, button")
+        clickables.forEach((el) => {
+          el.addEventListener("mouseenter", () => {
+            cursor.classList.add("cursor-active")
+          })
+          el.addEventListener("mouseleave", () => {
+            cursor.classList.remove("cursor-active")
+          })
+        })
       }
     </script>
   </head>
@@ -298,6 +367,8 @@
         <!-- Card 1: Kavya Beauty Products -->
         <a
           href="https://dribbble.com/shots/26134881-Cosmetics-App-UI-Design-Beauty-Ecommerce-Mobile-App"
+          target="_blank"
+          rel="noopener noreferrer"
           class="relative block w-full aspect-square rounded-sm overflow-hidden group"
         >
           <img
@@ -322,6 +393,8 @@
         <!-- Card 2: Bakery Brand -->
         <a
           href="https://dribbble.com/shots/26986886-Cr-me-Bakery-Website-UI-UX-Design"
+          target="_blank"
+          rel="noopener noreferrer"
           class="relative block w-full aspect-square rounded-sm overflow-hidden group"
         >
           <img
@@ -346,6 +419,8 @@
         <!-- Card 3: Handbag Store -->
         <a
           href="https://dribbble.com/shots/26471442-High-Fashion-Leather-Brand-Landing-Page-Design"
+          target="_blank"
+          rel="noopener noreferrer"
           class="relative block w-full aspect-square rounded-sm overflow-hidden group"
         >
           <img
@@ -370,6 +445,8 @@
         <!-- Card 7: Flexible Area Models -->
         <a
           href="https://dribbble.com/shots/26975020-Aur-a-Jewellery-Brand-Web-Design"
+          target="_blank"
+          rel="noopener noreferrer"
           class="relative block w-full aspect-square rounded-sm overflow-hidden group"
         >
           <img
@@ -390,7 +467,6 @@
             </h4>
           </div>
         </a>
-
       </div>
     </section>
 
@@ -400,7 +476,7 @@
       <div class="flex items-center justify-between mb-8">
         <h5 class="about-item text-black text-sm tracking-tight">about.</h5>
         <a
-          href="/work.html"
+          href="/about.html"
           class="about-item bg-neutral-100 text-black text-xs lg:text-[18px] tracking-tight px-4 py-2 rounded-sm hover:opacity-80 transition"
           >Show More</a
         >
@@ -432,17 +508,210 @@
         <p
           class="about-item about-text text-gray-900 leading-tight text-[18px] lg:max-w-xs"
         >
-          I mostly work with founders and small teams, especially ecommerce and
-          D2C brands that value clarity and long-term growth. I design
-          thoughtful websites that are convertible and built to support real
-          business goals. Along with design, I follow basic on-page SEO best
-          practices so websites are structured for users, search engines, and
-          future scalability. Let's create something beautiful, together.
+          I work with founders and small teams — especially D2C brands,
+          Instagram sellers, and growing ecommerce businesses — who want their
+          website to feel premium and perform. Many stores struggle with low
+          conversions because visitors don’t trust the brand yet, the experience
+          feels confusing, or the site isn’t built with growth in mind. Along
+          with design, I follow basic on-page SEO best practices so websites are
+          structured for users, search engines, and future scalability. Let's
+          create something beautiful, together.
         </p>
+      </div>
+    </section>
+
+    <!-- FAQs -->
+    <section class="w-full border-t border-gray-200 px-6 lg:px-20 py-10">
+      <div class="flex items-center justify-between mb-8">
+        <h5 class="text-black text-sm tracking-tight">FAQs.</h5>
+      </div>
+
+      <div
+        class="flex flex-row justify-end lg:flex-row gap-8 lg:gap-16 max-w-6xl mx-auto"
+      >
+        <!-- Right: FAQ Items -->
+        <div class="flex flex-col gap-2 lg:w-4/5">
+          <!-- FAQ 1 -->
+          <div class="bg-neutral-100 rounded-sm overflow-hidden">
+            <button
+              onclick="toggleFAQ('faq1')"
+              class="w-full flex items-center justify-between p-4 text-left hover:opacity-80 transition"
+            >
+              <h5 class="text-black w-5/6 lg:w-auto text-[20px] tracking-tight">
+                What is your creative design process like?
+              </h5>
+              <div class="flex-shrink-0 w-2 h-2 relative">
+                <span
+                  id="faq1-icon-h"
+                  class="absolute top-1/2 left-0 w-full h-[2px] bg-black transform -translate-y-1/2 transition-transform duration-300"
+                ></span>
+                <span
+                  id="faq1-icon-v"
+                  class="absolute top-0 left-1/2 w-[2px] h-full bg-black transform -translate-x-1/2 transition-transform duration-300"
+                ></span>
+              </div>
+            </button>
+            <div
+              id="faq1"
+              class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+            >
+              <div class="px-4 pb-6">
+                <p
+                  class="about-item about-text text-gray-900 leading-tight text-[18px]"
+                >
+                  My design process starts with fully understanding your goals
+                  and needs. I begin with research and brainstorming to gather
+                  insights, followed by sketching initial concepts. Once we
+                  agree on a creative direction, I develop detailed designs and
+                  make revisions based on your feedback. I strive for a
+                  seamless, collaborative process, ensuring that each step
+                  brings us closer to the perfect solution.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 2 -->
+          <div class="bg-neutral-100 rounded-sm overflow-hidden">
+            <button
+              onclick="toggleFAQ('faq2')"
+              class="w-full flex items-center justify-between p-4 text-left hover:opacity-80 transition"
+            >
+              <h5 class="text-black w-5/6 lg:w-auto text-[20px] tracking-tight">
+                What is your typical project timeline?
+              </h5>
+              <div class="flex-shrink-0 w-2 h-2 relative">
+                <span
+                  id="faq2-icon-h"
+                  class="absolute top-1/2 left-0 w-full h-[2px] bg-black transform -translate-y-1/2 transition-transform duration-300"
+                ></span>
+                <span
+                  id="faq2-icon-v"
+                  class="absolute top-0 left-1/2 w-[2px] h-full bg-black transform -translate-x-1/2 transition-transform duration-300"
+                ></span>
+              </div>
+            </button>
+            <div
+              id="faq2"
+              class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+            >
+              <div class="px-4 pb-6">
+                <p
+                  class="about-item about-text text-gray-900 leading-tight text-[18px]"
+                >
+                  Project timelines vary depending on scope and complexity. A
+                  typical website project takes 2-4 weeks from start to finish,
+                  including discovery, design, revisions, and final delivery.
+                  I'll provide a detailed timeline during our initial
+                  consultation.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 3 -->
+          <div class="bg-neutral-100 rounded-sm overflow-hidden">
+            <button
+              onclick="toggleFAQ('faq3')"
+              class="w-full flex items-center justify-between p-4 text-left hover:opacity-80 transition"
+            >
+              <h5 class="text-black w-5/6 lg:w-auto text-[20px] tracking-tight">
+                How do I get started on a project with you?
+              </h5>
+              <div class="flex-shrink-0 w-2 h-2 relative">
+                <span
+                  id="faq3-icon-h"
+                  class="absolute top-1/2 left-0 w-full h-[2px] bg-black transform -translate-y-1/2 transition-transform duration-300"
+                ></span>
+                <span
+                  id="faq3-icon-v"
+                  class="absolute top-0 left-1/2 w-[2px] h-full bg-black transform -translate-x-1/2 transition-transform duration-300"
+                ></span>
+              </div>
+            </button>
+            <div
+              id="faq3"
+              class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+            >
+              <div class="px-4 pb-6">
+                <p
+                  class="about-item about-text text-gray-900 leading-tight text-[18px]"
+                >
+                  Simply reach out via email or the contact form. We'll schedule
+                  a consultation call to discuss your project goals, timeline,
+                  and budget. After that, I'll send you a proposal and we can
+                  move forward from there.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 4 -->
+          <div class="bg-neutral-100 rounded-sm overflow-hidden">
+            <button
+              onclick="toggleFAQ('faq4')"
+              class="w-full flex items-center justify-between p-4 text-left hover:opacity-80 transition"
+            >
+              <h5 class="text-black w-5/6 lg:w-auto text-[20px] tracking-tight">
+                What should I do if you're fully booked?
+              </h5>
+              <div class="flex-shrink-0 w-2 h-2 relative">
+                <span
+                  id="faq4-icon-h"
+                  class="absolute top-1/2 left-0 w-full h-[2px] bg-black transform -translate-y-1/2 transition-transform duration-300"
+                ></span>
+                <span
+                  id="faq4-icon-v"
+                  class="absolute top-0 left-1/2 w-[2px] h-full bg-black transform -translate-x-1/2 transition-transform duration-300"
+                ></span>
+              </div>
+            </button>
+            <div
+              id="faq4"
+              class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+            >
+              <div class="px-4 pb-6">
+                <p
+                  class="about-item about-text text-gray-900 leading-tight text-[18px]"
+                >
+                  I maintain a waitlist for upcoming availability. Reach out and
+                  I'll add you to the queue with an estimated start date. I'll
+                  notify you as soon as a slot opens up.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- Footer -->
     <div id="footer-placeholder"></div>
+
+    <script>
+      function toggleFAQ(id) {
+        const content = document.getElementById(id)
+        const iconV = document.getElementById(id + "-icon-v")
+        const isOpen =
+          content.style.maxHeight && content.style.maxHeight !== "0px"
+
+        // Close all FAQs
+        document.querySelectorAll('[id^="faq"]').forEach((faq) => {
+          if (faq.id.includes("-icon")) return
+          faq.style.maxHeight = "0"
+        })
+
+        // Reset all icons to +
+        document.querySelectorAll('[id$="-icon-v"]').forEach((icon) => {
+          icon.style.transform = "translateX(-50%)"
+        })
+
+        // Toggle current FAQ
+        if (!isOpen) {
+          content.style.maxHeight = content.scrollHeight + "px"
+          iconV.style.transform = "translateX(-50%) rotate(90deg)"
+        }
+      }
+    </script>
   </body>
 </html>

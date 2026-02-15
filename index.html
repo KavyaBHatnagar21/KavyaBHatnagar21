@@ -199,8 +199,7 @@
           .then((res) => res.text())
           .then((html) => {
             document.body.insertAdjacentHTML("beforeend", html)
-            // Delay initialization to ensure all content is loaded
-            setTimeout(initCursor, 100)
+            initCursor()
           })
 
         // Scroll-reveal animation for About section
@@ -509,13 +508,14 @@
           class="about-item about-text text-gray-900 leading-tight text-[18px] lg:max-w-xs"
         >
           I work with founders and small teams — especially D2C brands,
-          Instagram sellers, and growing ecommerce businesses — who want their
-          website to feel premium and perform. Many stores struggle with low
-          conversions because visitors don’t trust the brand yet, the experience
-          feels confusing, or the site isn’t built with growth in mind. Along
-          with design, I follow basic on-page SEO best practices so websites are
-          structured for users, search engines, and future scalability. Let's
-          create something beautiful, together.
+          Instagram sellers, and growing ecommerce businesses who want their
+          website to feel premium and actually drive results. Many stores look
+          good on the surface but struggle underneath, visitors hesitate because
+          the brand does not feel trustworthy yet, navigation feels unclear, or
+          the site is not designed to support growth and scale. I solve this by
+          designing clear, intuitive experiences backed by thoughtful UX
+          decisions, clean UI, and on-page SEO best practices, so your website
+          is easy to use, easy to find, and ready to grow your business.
         </p>
       </div>
     </section>
@@ -679,6 +679,111 @@
                   notify you as soon as a slot opens up.
                 </p>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="w-full border-t border-gray-200 px-6 lg:px-20 py-10">
+      <div class="flex items-center justify-between mb-12">
+        <h5 class="text-black text-sm tracking-tight">testimonials.</h5>
+      </div>
+
+      <div class="max-w-4xl mx-auto space-y-16">
+        <!-- Testimonial 1 - Left Aligned -->
+        <!-- <div
+          class="about-item flex flex-col lg:flex-row items-start lg:items-center gap-6"
+        >
+          <div class="flex-1">
+            <img
+              src="assets/images/quote.png"
+              alt="Quote"
+              class="mb-4 w-6 h-6 transform rotate-180"
+            />
+            <p
+              class="text-black leading-tight text-base opacity-0 animate-fade-in-up-5 lg:max-w-sm"
+            >
+              Working with Kavya was a game-changer for our brand. She
+              transformed our Shopify store into a conversion machine while
+              keeping our brand identity intact.
+            </p>
+            <div class="flex flex-col gap-1 mt-4">
+              <p class="text-black font-bold text-sm">Ashok Shetty</p>
+              <p class="text-gray-600 text-xs">Founder, Noor Jewellery</p>
+            </div>
+          </div>
+        </div> -->
+
+        <!-- Testimonial 2 - Right Aligned -->
+        <div
+          class="about-item flex flex-col lg:flex-row-reverse items-start lg:items-center gap-6"
+        >
+          <div class="flex-1 lg:text-right">
+            <img
+              src="assets/images/quote.png"
+              alt="Quote"
+              class="mb-4 w-6 h-6 lg:ml-auto transform rotate-180 scale-x-[-1]"
+            />
+            <p
+              class="text-black ml-auto leading-tight text-base opacity-0 animate-fade-in-up-5 lg:max-w-sm"
+            >
+              Kavya delivered exactly what we needed. Clean, modern design with
+              a focus on user experience. Our customers love the new site and
+              our sales show it.
+            </p>
+            <div class="flex flex-col gap-1 mt-4">
+              <p class="text-black font-bold text-sm">Kavitha K.</p>
+              <p class="text-gray-600 text-xs">Founder, Nityaara Collections</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 3 - Left Aligned -->
+        <div
+          class="about-item flex flex-col lg:flex-row items-start lg:items-center gap-6"
+        >
+          <div class="flex-1">
+            <img
+              src="assets/images/quote.png"
+              alt="Quote"
+              class="mb-4 w-6 h-6 transform rotate-180"
+            />
+            <p
+              class="text-black leading-tight text-base opacity-0 animate-fade-in-up-5 lg:max-w-sm"
+            >
+              Her attention to detail and understanding of ecommerce best
+              practices made all the difference. Highly recommend for any D2C
+              brand looking to scale.
+            </p>
+            <div class="flex flex-col gap-1 mt-4">
+              <p class="text-black font-bold text-sm">Hamna Shamim</p>
+              <p class="text-gray-600 text-xs">Brand Founder, Epidermis</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 4 - Right Aligned -->
+        <div
+          class="about-item flex flex-col lg:flex-row-reverse items-start lg:items-center gap-6"
+        >
+          <div class="flex-1 lg:text-right">
+            <img
+              src="assets/images/quote.png"
+              alt="Quote"
+              class="mb-4 w-6 h-6 lg:ml-auto transform rotate-180 scale-x-[-1]"
+            />
+            <p
+              class="text-black ml-auto leading-tight text-base opacity-0 animate-fade-in-up-5 lg:max-w-sm"
+            >
+              From concept to launch, Kavya made the entire process smooth and
+              enjoyable. The final product exceeded our expectations in every
+              way.
+            </p>
+            <div class="flex flex-col gap-1 mt-4">
+              <p class="text-black font-bold text-sm">Abhyas Kumar</p>
+              <p class="text-gray-600 text-xs">Founder, Tiny House of Joy</p>
             </div>
           </div>
         </div>

@@ -1,0 +1,838 @@
+<!doctype html>
+<html lang="en" class="text-[24px] lg:text-[30px]">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Kavya Bhatnagar | Shopify & Ecommerce UI UX Designer</title>
+    <meta name="description" content="Shopify & Ecommerce UI UX Designer based in Bengaluru, India. I design and develop conversion-focused websites that outperform the competition." />
+    <link rel="canonical" href="https://heykavya.com/" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Kavya Bhatnagar | Shopify & Ecommerce UI UX Designer" />
+    <meta property="og:description" content="I design and develop conversion-focused Shopify and ecommerce websites for brands worldwide." />
+    <meta property="og:url" content="https://heykavya.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://heykavya.com/assets/images/profile.png" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Kavya Bhatnagar | Shopify & Ecommerce UI UX Designer" />
+    <meta name="twitter:description" content="I design and develop conversion-focused Shopify and ecommerce websites for brands worldwide." />
+    <meta name="twitter:image" content="https://heykavya.com/assets/images/profile.png" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              inter: ["Inter", "sans-serif"],
+            },
+            keyframes: {
+              headerSlideIn: {
+                from: { opacity: "0", transform: "translateY(-100%)" },
+                to: { opacity: "1", transform: "translateY(0)" },
+              },
+              fadeInUp: {
+                from: { opacity: "0", transform: "translateY(20px)" },
+                to: { opacity: "1", transform: "translateY(0)" },
+              },
+              scaleIn: {
+                from: { opacity: "0", transform: "scale(0)" },
+                to: { opacity: "1", transform: "scale(1)" },
+              },
+            },
+            animation: {
+              "header-slide": "headerSlideIn 0.6s ease-out forwards",
+              "fade-in-up-1": "fadeInUp 0.6s ease-out 0.1s forwards",
+              "fade-in-up-2": "fadeInUp 0.6s ease-out 0.2s forwards",
+              "fade-in-up-4": "fadeInUp 0.6s ease-out 0.4s forwards",
+              "fade-in-up-5": "fadeInUp 0.6s ease-out 0.5s forwards",
+              "scale-in-3": "scaleIn 0.6s ease-out 0.3s forwards",
+            },
+          },
+        },
+      }
+    </script>
+    <style>
+      #navbar {
+        transition: transform 0.3s ease-in-out;
+      }
+      #navbar.navbar-hidden {
+        transform: translateY(-100%);
+      }
+      .about-item {
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+          opacity 0.6s ease-out,
+          transform 0.6s ease-out;
+      }
+      .about-item.revealed {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .about-image.revealed {
+        transition-delay: 0.1s;
+      }
+      .about-text.revealed {
+        transition-delay: 0.2s;
+      }
+
+      /* Mobile Menu */
+      #mobile-menu {
+        transform: translateY(-100%);
+        opacity: 0;
+        transition:
+          transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+          opacity 0.6s ease;
+        pointer-events: none;
+      }
+      #mobile-menu.menu-open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      /* Menu nav link animation */
+      .menu-link {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      #mobile-menu.menu-open .menu-link {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      #mobile-menu.menu-open .menu-link:nth-child(1) {
+        transition-delay: 0.25s;
+      }
+      #mobile-menu.menu-open .menu-link:nth-child(2) {
+        transition-delay: 0.4s;
+      }
+      #mobile-menu.menu-open .menu-link:nth-child(3) {
+        transition-delay: 0.55s;
+      }
+
+      /* Close button fade */
+      .menu-close {
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+      #mobile-menu.menu-open .menu-close {
+        opacity: 1;
+        transition-delay: 0.2s;
+      }
+
+      /* Custom Cursor */
+      * {
+        cursor: none !important;
+      }
+
+      #cursor {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        pointer-events: none;
+        background: white;
+        mix-blend-mode: difference;
+        transform: translate(-50%, -50%);
+        transition: transform 0.15s ease;
+        z-index: 9999;
+      }
+
+      .cursor-active {
+        transform: translate(-50%, -50%) scale(1.6);
+      }
+
+      /* Disable cursor on mobile */
+      @media (max-width: 768px) {
+        #cursor {
+          display: none;
+        }
+        body {
+          cursor: auto;
+        }
+      }
+    </style>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Load header
+        fetch("header.html")
+          .then((res) => res.text())
+          .then((html) => {
+            document.getElementById("header-placeholder").innerHTML = html
+
+            // Initialize navbar scroll behavior after header loads
+            let lastScrollTop = 0
+            const navbar = document.getElementById("navbar")
+            let scrollDirection = null
+
+            window.addEventListener("scroll", () => {
+              const currentScroll =
+                window.pageYOffset || document.documentElement.scrollTop
+
+              if (currentScroll > 100) {
+                if (
+                  currentScroll > lastScrollTop &&
+                  scrollDirection !== "down"
+                ) {
+                  scrollDirection = "down"
+                  navbar.style.transform = "translateY(-100%)"
+                } else if (
+                  currentScroll < lastScrollTop &&
+                  scrollDirection !== "up"
+                ) {
+                  scrollDirection = "up"
+                  navbar.style.transform = "translateY(0)"
+                }
+              } else {
+                navbar.style.transform = "translateY(0)"
+                scrollDirection = null
+              }
+
+              lastScrollTop = currentScroll <= 0 ? 0 : currentScroll
+            })
+          })
+
+        // Load footer
+        fetch("footer.html")
+          .then((res) => res.text())
+          .then((html) => {
+            document.getElementById("footer-placeholder").innerHTML = html
+          })
+
+        // Load cursor
+        fetch("cursor.html")
+          .then((res) => res.text())
+          .then((html) => {
+            document.body.insertAdjacentHTML("beforeend", html)
+            initCursor()
+          })
+
+        // Scroll-reveal animation for About section
+        const aboutItems = document.querySelectorAll(".about-item")
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: "0px 0px -50px 0px",
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("revealed")
+              observer.unobserve(entry.target)
+            }
+          })
+        }, observerOptions)
+
+        aboutItems.forEach((item) => observer.observe(item))
+      })
+
+      // Mobile menu functions
+      function openMobileMenu() {
+        const menu = document.getElementById("mobile-menu")
+        document.body.style.overflow = "hidden"
+        requestAnimationFrame(() => {
+          menu.classList.add("menu-open")
+        })
+      }
+
+      function closeMobileMenu() {
+        const menu = document.getElementById("mobile-menu")
+        menu.classList.remove("menu-open")
+        document.body.style.overflow = ""
+      }
+
+      // Custom cursor functionality
+      function initCursor() {
+        const cursor = document.getElementById("cursor")
+        if (!cursor) return
+
+        // Track mouse movement
+        document.addEventListener("mousemove", (e) => {
+          cursor.style.top = `${e.clientY}px`
+          cursor.style.left = `${e.clientX}px`
+        })
+
+        // Add hover effect on clickable elements
+        const clickables = document.querySelectorAll("a, button")
+        clickables.forEach((el) => {
+          el.addEventListener("mouseenter", () => {
+            cursor.classList.add("cursor-active")
+          })
+          el.addEventListener("mouseleave", () => {
+            cursor.classList.remove("cursor-active")
+          })
+        })
+      }
+    </script>
+  </head>
+  <body class="bg-white text-gray-900 font-inter overflow-x-hidden">
+    <!-- Header -->
+    <div id="header-placeholder"></div>
+
+    <!-- Hero -->
+    <section
+      class="w-full flex flex-col pt-24 pb-6 px-6 lg:px-20 justify-between min-h-screen"
+    >
+      <!-- Profile Section -->
+      <div
+        class="w-full flex flex-col-reverse lg:flex-row lg:items-start lg:justify-between gap-[30px] [font-feature-settings:'blwf','cv03','cv04','cv09','cv11']"
+      >
+        <!-- Name -->
+        <div class="flex flex-col items-start gap-2">
+          <div class="opacity-0 animate-fade-in-up-1">
+            <h1
+              class="font-bold text-black uppercase text-4xl lg:text-6xl tracking-tighter leading-tight"
+            >
+              KAVYA
+            </h1>
+          </div>
+          <div class="opacity-0 animate-fade-in-up-2">
+            <h1
+              class="font-bold text-black uppercase text-4xl lg:text-6xl tracking-tighter leading-tight"
+            >
+              BHATNAGAR
+            </h1>
+          </div>
+        </div>
+        <!-- Avatar -->
+        <div
+          class="relative w-[100px] h-[100px] lg:w-[150px] lg:h-[150px] rounded-full overflow-hidden flex-shrink-0 opacity-0 scale-0 animate-scale-in-3"
+        >
+          <div class="absolute inset-0 rounded-[inherit] bg-[#c8d1ca]">
+            <img
+              decoding="async"
+              src="assets/images/profile.png"
+              alt="Kavya Bhatnagar"
+              class="block w-full h-full object-cover object-center rounded-[inherit]"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Bio Section -->
+      <div
+        class="w-full flex flex-col lg:flex-row lg:justify-between lg:items-start gap-5 opacity-0 animate-fade-in-up-4"
+      >
+        <div class="flex items-center gap-2">
+          <p class="text-black text-sm tracking-tight">contact@heykavya.com</p>
+          <button
+            onclick="navigator.clipboard.writeText('hello@kavya.com')"
+            class="flex items-center justify-center p-2 cursor-pointer bg-transparent border-none hover:opacity-60 transition"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+            >
+              <path
+                d="M13.89 1.668H1.668v12.222h12.222V1.668z"
+                stroke="black"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M17 6.11h1.332v12.222H6.109V17"
+                stroke="black"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
+        <p
+          class="text-black leading-tight text-base opacity-0 animate-fade-in-up-5 lg:max-w-sm"
+        >
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hello, I am a Shopify
+          & Ecommerce UI UX Designer based in Bengaluru, India. I design and
+          develop conversion-focused websites that outperform the competition.
+          Let's create!
+        </p>
+      </div>
+    </section>
+
+    <!-- Work -->
+    <section class="w-full border-t border-gray-200 px-6 lg:px-20 py-10">
+      <!-- Section Header -->
+      <div class="flex items-center justify-between mb-8">
+        <h5 class="text-black text-sm tracking-tight">work.</h5>
+        <a
+          href="/work.html"
+          class="bg-neutral-100 text-black text-xs lg:text-[18px] tracking-tight px-4 py-2 rounded-sm hover:opacity-80 transition"
+          >Show More</a
+        >
+      </div>
+
+      <!-- Project Cards -->
+      <div class="flex flex-col lg:grid lg:grid-cols-2 gap-5">
+        <!-- Card 1: Kavya Beauty Products -->
+        <a
+          href="https://dribbble.com/shots/26134881-Cosmetics-App-UI-Design-Beauty-Ecommerce-Mobile-App"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="relative block w-full aspect-square rounded-sm overflow-hidden group"
+        >
+          <img
+            decoding="async"
+            loading="lazy"
+            src="assets/images/fashion-products.webp"
+            alt="Stone Mind"
+            class="block w-full h-full object-cover object-center"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300"
+          ></div>
+          <div
+            class="absolute bottom-0 left-0 p-5 lg:opacity-0 lg:group-hover:opacity-100 lg:translate-y-4 lg:group-hover:translate-y-0 transition-all duration-300"
+          >
+            <h4 class="text-white text-sm lg:text-2xl tracking-tight">
+              Beauty Ecommerce Mobile App UI UX Design
+            </h4>
+          </div>
+        </a>
+
+        <!-- Card 2: Bakery Brand -->
+        <a
+          href="https://dribbble.com/shots/26986886-Cr-me-Bakery-Website-UI-UX-Design"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="relative block w-full aspect-square rounded-sm overflow-hidden group"
+        >
+          <img
+            decoding="async"
+            loading="lazy"
+            src="assets/images/cake-website-design.webp"
+            alt="Violet Orbit"
+            class="block w-full h-full object-cover object-top object-center"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300"
+          ></div>
+          <div
+            class="absolute bottom-0 left-0 p-5 lg:opacity-0 lg:group-hover:opacity-100 lg:translate-y-4 lg:group-hover:translate-y-0 transition-all duration-300"
+          >
+            <h4 class="text-white text-sm lg:text-2xl tracking-tight">
+              Bakery Ecommerce Website UI UX Design
+            </h4>
+          </div>
+        </a>
+
+        <!-- Card 3: Handbag Store -->
+        <a
+          href="https://dribbble.com/shots/26471442-High-Fashion-Leather-Brand-Landing-Page-Design"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="relative block w-full aspect-square rounded-sm overflow-hidden group"
+        >
+          <img
+            decoding="async"
+            loading="lazy"
+            src="assets/images/bag-website-design.png"
+            alt="Visual Screen Models"
+            class="block w-full h-full object-cover object-top object-center"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300"
+          ></div>
+          <div
+            class="absolute bottom-0 left-0 p-5 lg:opacity-0 lg:group-hover:opacity-100 lg:translate-y-4 lg:group-hover:translate-y-0 transition-all duration-300"
+          >
+            <h4 class="text-white text-sm lg:text-2xl tracking-tight">
+              Luxury Leather Handbag Shopify Store
+            </h4>
+          </div>
+        </a>
+
+        <!-- Card 7: Flexible Area Models -->
+        <a
+          href="https://dribbble.com/shots/26975020-Aur-a-Jewellery-Brand-Web-Design"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="relative block w-full aspect-square rounded-sm overflow-hidden group"
+        >
+          <img
+            decoding="async"
+            loading="lazy"
+            src="assets/images/jewellery.webp"
+            alt="Flexible Area Models"
+            class="block w-full h-full object-cover object-top object-center"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300"
+          ></div>
+          <div
+            class="absolute bottom-0 left-0 p-5 lg:opacity-0 lg:group-hover:opacity-100 lg:translate-y-4 lg:group-hover:translate-y-0 transition-all duration-300"
+          >
+            <h4 class="text-white text-sm lg:text-2xl tracking-tight">
+              Jewellery Ecommerce Landing Page Design
+            </h4>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="w-full border-t border-gray-200 px-6 lg:px-20 py-10">
+      <!-- Section Header -->
+      <div class="flex items-center justify-between mb-8">
+        <h5 class="about-item text-black text-sm tracking-tight">about.</h5>
+        <a
+          href="/about.html"
+          class="about-item bg-neutral-100 text-black text-xs lg:text-[18px] tracking-tight px-4 py-2 rounded-sm hover:opacity-80 transition"
+          >Show More</a
+        >
+      </div>
+
+      <!-- Text Section -->
+      <div class="mb-8">
+        <p class="about-item text-black leading-tight text-base lg:max-w-sm">
+          I design and build conversion-focused Shopify and ecommerce websites
+          for brands worldwide, combining strong UI UX with clean execution.
+        </p>
+      </div>
+
+      <!-- Image Section -->
+      <div
+        class="flex flex-col lg:flex-row lg:max-w-lg mx-auto lg:items-center lg:justify-center gap-8"
+      >
+        <div
+          class="about-item about-image relative w-full aspect-square rounded-sm overflow-hidden"
+        >
+          <img
+            decoding="async"
+            loading="lazy"
+            src="assets/images/kavya.jpeg"
+            alt="About photo"
+            class="block w-full h-full object-cover object-center"
+          />
+        </div>
+        <p
+          class="about-item about-text text-gray-900 leading-tight text-[18px] lg:max-w-xs"
+        >
+          I work with founders and small teams — especially D2C brands,
+          Instagram sellers, and growing ecommerce businesses who want their
+          website to feel premium and actually drive results. Many stores look
+          good on the surface but struggle underneath, visitors hesitate because
+          the brand does not feel trustworthy yet, navigation feels unclear, or
+          the site is not designed to support growth and scale. I solve this by
+          designing clear, intuitive experiences backed by thoughtful UX
+          decisions, clean UI, and on-page SEO best practices, so your website
+          is easy to use, easy to find, and ready to grow your business.
+        </p>
+      </div>
+    </section>
+
+    <!-- FAQs -->
+    <section class="w-full border-t border-gray-200 px-6 lg:px-20 py-10">
+      <div class="flex items-center justify-between mb-8">
+        <h5 class="text-black text-sm tracking-tight">FAQs.</h5>
+      </div>
+
+      <div
+        class="flex flex-row justify-end lg:flex-row gap-8 lg:gap-16 max-w-6xl mx-auto"
+      >
+        <!-- Right: FAQ Items -->
+        <div class="flex flex-col gap-2 lg:w-4/5">
+          <!-- FAQ 1 -->
+          <div class="bg-neutral-100 rounded-sm overflow-hidden">
+            <button
+              onclick="toggleFAQ('faq1')"
+              class="w-full flex items-center justify-between p-4 text-left hover:opacity-80 transition"
+            >
+              <h5 class="text-black w-5/6 lg:w-auto text-[20px] tracking-tight">
+                What is your creative design process like?
+              </h5>
+              <div class="flex-shrink-0 w-2 h-2 relative">
+                <span
+                  id="faq1-icon-h"
+                  class="absolute top-1/2 left-0 w-full h-[2px] bg-black transform -translate-y-1/2 transition-transform duration-300"
+                ></span>
+                <span
+                  id="faq1-icon-v"
+                  class="absolute top-0 left-1/2 w-[2px] h-full bg-black transform -translate-x-1/2 transition-transform duration-300"
+                ></span>
+              </div>
+            </button>
+            <div
+              id="faq1"
+              class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+            >
+              <div class="px-4 pb-6">
+                <p
+                  class="about-item about-text text-gray-900 leading-tight text-[18px]"
+                >
+                  My design process starts with fully understanding your goals
+                  and needs. I begin with research and brainstorming to gather
+                  insights, followed by sketching initial concepts. Once we
+                  agree on a creative direction, I develop detailed designs and
+                  make revisions based on your feedback. I strive for a
+                  seamless, collaborative process, ensuring that each step
+                  brings us closer to the perfect solution.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 2 -->
+          <div class="bg-neutral-100 rounded-sm overflow-hidden">
+            <button
+              onclick="toggleFAQ('faq2')"
+              class="w-full flex items-center justify-between p-4 text-left hover:opacity-80 transition"
+            >
+              <h5 class="text-black w-5/6 lg:w-auto text-[20px] tracking-tight">
+                What is your typical project timeline?
+              </h5>
+              <div class="flex-shrink-0 w-2 h-2 relative">
+                <span
+                  id="faq2-icon-h"
+                  class="absolute top-1/2 left-0 w-full h-[2px] bg-black transform -translate-y-1/2 transition-transform duration-300"
+                ></span>
+                <span
+                  id="faq2-icon-v"
+                  class="absolute top-0 left-1/2 w-[2px] h-full bg-black transform -translate-x-1/2 transition-transform duration-300"
+                ></span>
+              </div>
+            </button>
+            <div
+              id="faq2"
+              class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+            >
+              <div class="px-4 pb-6">
+                <p
+                  class="about-item about-text text-gray-900 leading-tight text-[18px]"
+                >
+                  Project timelines vary depending on scope and complexity. A
+                  typical website project takes 2-4 weeks from start to finish,
+                  including discovery, design, revisions, and final delivery.
+                  I'll provide a detailed timeline during our initial
+                  consultation.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 3 -->
+          <div class="bg-neutral-100 rounded-sm overflow-hidden">
+            <button
+              onclick="toggleFAQ('faq3')"
+              class="w-full flex items-center justify-between p-4 text-left hover:opacity-80 transition"
+            >
+              <h5 class="text-black w-5/6 lg:w-auto text-[20px] tracking-tight">
+                How do I get started on a project with you?
+              </h5>
+              <div class="flex-shrink-0 w-2 h-2 relative">
+                <span
+                  id="faq3-icon-h"
+                  class="absolute top-1/2 left-0 w-full h-[2px] bg-black transform -translate-y-1/2 transition-transform duration-300"
+                ></span>
+                <span
+                  id="faq3-icon-v"
+                  class="absolute top-0 left-1/2 w-[2px] h-full bg-black transform -translate-x-1/2 transition-transform duration-300"
+                ></span>
+              </div>
+            </button>
+            <div
+              id="faq3"
+              class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+            >
+              <div class="px-4 pb-6">
+                <p
+                  class="about-item about-text text-gray-900 leading-tight text-[18px]"
+                >
+                  Simply reach out via email or the contact form. We'll schedule
+                  a consultation call to discuss your project goals, timeline,
+                  and budget. After that, I'll send you a proposal and we can
+                  move forward from there.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 4 -->
+          <div class="bg-neutral-100 rounded-sm overflow-hidden">
+            <button
+              onclick="toggleFAQ('faq4')"
+              class="w-full flex items-center justify-between p-4 text-left hover:opacity-80 transition"
+            >
+              <h5 class="text-black w-5/6 lg:w-auto text-[20px] tracking-tight">
+                What should I do if you're fully booked?
+              </h5>
+              <div class="flex-shrink-0 w-2 h-2 relative">
+                <span
+                  id="faq4-icon-h"
+                  class="absolute top-1/2 left-0 w-full h-[2px] bg-black transform -translate-y-1/2 transition-transform duration-300"
+                ></span>
+                <span
+                  id="faq4-icon-v"
+                  class="absolute top-0 left-1/2 w-[2px] h-full bg-black transform -translate-x-1/2 transition-transform duration-300"
+                ></span>
+              </div>
+            </button>
+            <div
+              id="faq4"
+              class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+            >
+              <div class="px-4 pb-6">
+                <p
+                  class="about-item about-text text-gray-900 leading-tight text-[18px]"
+                >
+                  I maintain a waitlist for upcoming availability. Reach out and
+                  I'll add you to the queue with an estimated start date. I'll
+                  notify you as soon as a slot opens up.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="w-full border-t border-gray-200 px-6 lg:px-20 py-10">
+      <div class="flex items-center justify-between mb-12">
+        <h5 class="text-black text-sm tracking-tight">testimonials.</h5>
+      </div>
+
+      <div class="max-w-4xl mx-auto space-y-16">
+        <!-- Testimonial 1 - Left Aligned -->
+        <!-- <div
+          class="about-item flex flex-col lg:flex-row items-start lg:items-center gap-6"
+        >
+          <div class="flex-1">
+            <img
+              src="assets/images/quote.png"
+              alt="Quote"
+              class="mb-4 w-6 h-6 transform rotate-180"
+            />
+            <p
+              class="text-black leading-tight text-base opacity-0 animate-fade-in-up-5 lg:max-w-sm"
+            >
+              Working with Kavya was a game-changer for our brand. She
+              transformed our Shopify store into a conversion machine while
+              keeping our brand identity intact.
+            </p>
+            <div class="flex flex-col gap-1 mt-4">
+              <p class="text-black font-bold text-sm">Ashok Shetty</p>
+              <p class="text-gray-600 text-xs">Founder, Noor Jewellery</p>
+            </div>
+          </div>
+        </div> -->
+
+        <!-- Testimonial 2 - Right Aligned -->
+        <div
+          class="about-item flex flex-col lg:flex-row-reverse items-start lg:items-center gap-6"
+        >
+          <div class="flex-1 lg:text-right">
+            <img
+              src="assets/images/quote.png"
+              alt="Quote"
+              class="mb-4 w-6 h-6 lg:ml-auto transform rotate-180 scale-x-[-1]"
+            />
+            <p
+              class="text-black ml-auto leading-tight text-base opacity-0 animate-fade-in-up-5 lg:max-w-sm"
+            >
+              Kavya delivered exactly what we needed. Clean, modern design with
+              a focus on user experience. Our customers love the new site and
+              our sales show it.
+            </p>
+            <div class="flex flex-col gap-1 mt-4">
+              <p class="text-black font-bold text-sm">Kavitha K.</p>
+              <p class="text-gray-600 text-xs">Founder, Nityaara Collections</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 3 - Left Aligned -->
+        <div
+          class="about-item flex flex-col lg:flex-row items-start lg:items-center gap-6"
+        >
+          <div class="flex-1">
+            <img
+              src="assets/images/quote.png"
+              alt="Quote"
+              class="mb-4 w-6 h-6 transform rotate-180"
+            />
+            <p
+              class="text-black leading-tight text-base opacity-0 animate-fade-in-up-5 lg:max-w-sm"
+            >
+              Her attention to detail and understanding of ecommerce best
+              practices made all the difference. Highly recommend for any D2C
+              brand looking to scale.
+            </p>
+            <div class="flex flex-col gap-1 mt-4">
+              <p class="text-black font-bold text-sm">Hamna Shamim</p>
+              <p class="text-gray-600 text-xs">Brand Founder, Epidermis</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 4 - Right Aligned -->
+        <div
+          class="about-item flex flex-col lg:flex-row-reverse items-start lg:items-center gap-6"
+        >
+          <div class="flex-1 lg:text-right">
+            <img
+              src="assets/images/quote.png"
+              alt="Quote"
+              class="mb-4 w-6 h-6 lg:ml-auto transform rotate-180 scale-x-[-1]"
+            />
+            <p
+              class="text-black ml-auto leading-tight text-base opacity-0 animate-fade-in-up-5 lg:max-w-sm"
+            >
+              From concept to launch, Kavya made the entire process smooth and
+              enjoyable. The final product exceeded our expectations in every
+              way.
+            </p>
+            <div class="flex flex-col gap-1 mt-4">
+              <p class="text-black font-bold text-sm">Abhyas Kumar</p>
+              <p class="text-gray-600 text-xs">Founder, Tiny House of Joy</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+
+    <script>
+      function toggleFAQ(id) {
+        const content = document.getElementById(id)
+        const iconV = document.getElementById(id + "-icon-v")
+        const isOpen =
+          content.style.maxHeight && content.style.maxHeight !== "0px"
+
+        // Close all FAQs
+        document.querySelectorAll('[id^="faq"]').forEach((faq) => {
+          if (faq.id.includes("-icon")) return
+          faq.style.maxHeight = "0"
+        })
+
+        // Reset all icons to +
+        document.querySelectorAll('[id$="-icon-v"]').forEach((icon) => {
+          icon.style.transform = "translateX(-50%)"
+        })
+
+        // Toggle current FAQ
+        if (!isOpen) {
+          content.style.maxHeight = content.scrollHeight + "px"
+          iconV.style.transform = "translateX(-50%) rotate(90deg)"
+        }
+      }
+    </script>
+  </body>
+</html>

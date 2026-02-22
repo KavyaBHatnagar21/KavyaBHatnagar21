@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /v1.html
 
 Sitemap: https://heykavya.com/sitemap.xml

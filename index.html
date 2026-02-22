@@ -1,837 +1,1685 @@
 <!doctype html>
-<html lang="en" class="text-[24px] lg:text-[30px]">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Shopify Store Redesign & Setup for D2C Brands in India | Kavya Bhatnagar
+    </title>
     <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+      name="description"
+      content="Shopify store setup, redesign, and SEO for Indian D2C brands and Instagram sellers. If your store isn't converting, here's why — and how to fix it."
     />
-    <title>Kavya Bhatnagar | Shopify & Ecommerce UI UX Designer</title>
-    <meta name="description" content="Shopify & Ecommerce UI UX Designer based in Bengaluru, India. I design and develop conversion-focused websites that outperform the competition." />
-    <link rel="canonical" href="https://heykavya.com/" />
-
-    <!-- Open Graph -->
-    <meta property="og:title" content="Kavya Bhatnagar | Shopify & Ecommerce UI UX Designer" />
-    <meta property="og:description" content="I design and develop conversion-focused Shopify and ecommerce websites for brands worldwide." />
-    <meta property="og:url" content="https://heykavya.com/" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://heykavya.com/assets/images/profile.png" />
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Kavya Bhatnagar | Shopify & Ecommerce UI UX Designer" />
-    <meta name="twitter:description" content="I design and develop conversion-focused Shopify and ecommerce websites for brands worldwide." />
-    <meta name="twitter:image" content="https://heykavya.com/assets/images/profile.png" />
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              inter: ["Inter", "sans-serif"],
-            },
-            keyframes: {
-              headerSlideIn: {
-                from: { opacity: "0", transform: "translateY(-100%)" },
-                to: { opacity: "1", transform: "translateY(0)" },
-              },
-              fadeInUp: {
-                from: { opacity: "0", transform: "translateY(20px)" },
-                to: { opacity: "1", transform: "translateY(0)" },
-              },
-              scaleIn: {
-                from: { opacity: "0", transform: "scale(0)" },
-                to: { opacity: "1", transform: "scale(1)" },
-              },
-            },
-            animation: {
-              "header-slide": "headerSlideIn 0.6s ease-out forwards",
-              "fade-in-up-1": "fadeInUp 0.6s ease-out 0.1s forwards",
-              "fade-in-up-2": "fadeInUp 0.6s ease-out 0.2s forwards",
-              "fade-in-up-4": "fadeInUp 0.6s ease-out 0.4s forwards",
-              "fade-in-up-5": "fadeInUp 0.6s ease-out 0.5s forwards",
-              "scale-in-3": "scaleIn 0.6s ease-out 0.3s forwards",
-            },
-          },
-        },
-      }
-    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Instrument+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+      rel="stylesheet"
+    />
     <style>
-      #navbar {
-        transition: transform 0.3s ease-in-out;
-      }
-      #navbar.navbar-hidden {
-        transform: translateY(-100%);
-      }
-      .about-item {
-        opacity: 0;
-        transform: translateY(20px);
-        transition:
-          opacity 0.6s ease-out,
-          transform 0.6s ease-out;
-      }
-      .about-item.revealed {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      .about-image.revealed {
-        transition-delay: 0.1s;
-      }
-      .about-text.revealed {
-        transition-delay: 0.2s;
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
       }
 
-      /* Mobile Menu */
-      #mobile-menu {
-        transform: translateY(-100%);
-        opacity: 0;
-        transition:
-          transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-          opacity 0.6s ease;
-        pointer-events: none;
-      }
-      #mobile-menu.menu-open {
-        transform: translateY(0);
-        opacity: 1;
-        pointer-events: auto;
+      :root {
+        /* Ink */
+        --ink: #121212; /* softer than pure black, still strong */
+
+        /* Paper (warm, but controlled) */
+        --paper: #f5f3ef; /* page background */
+        --paper-warm: #ece9e3; /* alt sections */
+
+        /* Powder blue system */
+        --sage: #8fb6d9; /* primary accent */
+        --sage-muted: #c9d9e6; /* cards, subtle fills */
+        --sage-pale: #e9f0f5; /* large backgrounds (reduced glare) */
+
+        /* Cool greys (aligned with blue) */
+        --mid: #7e8a94; /* secondary text, icons */
+        --light: #cbd4db; /* UI fills */
+        --border: #d6dee4; /* dividers, strokes */
+
+        /* Typography */
+        --display: "Playfair Display", Georgia, serif;
+        --body: "Instrument Sans", sans-serif;
       }
 
-      /* Menu nav link animation */
-      .menu-link {
-        opacity: 0;
-        transform: translateY(30px);
-        transition:
-          opacity 0.6s ease,
-          transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-      }
-      #mobile-menu.menu-open .menu-link {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      #mobile-menu.menu-open .menu-link:nth-child(1) {
-        transition-delay: 0.25s;
-      }
-      #mobile-menu.menu-open .menu-link:nth-child(2) {
-        transition-delay: 0.4s;
-      }
-      #mobile-menu.menu-open .menu-link:nth-child(3) {
-        transition-delay: 0.55s;
+      html {
+        scroll-behavior: smooth;
       }
 
-      /* Close button fade */
-      .menu-close {
-        opacity: 0;
-        transition: opacity 0.4s ease;
-      }
-      #mobile-menu.menu-open .menu-close {
-        opacity: 1;
-        transition-delay: 0.2s;
-      }
-
-      /* Custom Cursor */
-      * {
-        cursor: none !important;
+      body {
+        background: var(--paper);
+        color: var(--ink);
+        font-family: var(--body);
+        font-size: 16px;
+        line-height: 1.6;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
       }
 
-      #cursor {
+      @media (pointer: fine) {
+        *,
+        a,
+        button {
+          cursor: none !important;
+        }
+        .cursor {
+          width: 8px;
+          height: 8px;
+          background: #fff;
+          border-radius: 50%;
+          position: fixed;
+          top: 0;
+          left: 0;
+          pointer-events: none;
+          z-index: 9999;
+          transform: translate(-50%, -50%);
+          transition:
+            width 0.25s,
+            height 0.25s,
+            background 0.25s;
+          mix-blend-mode: difference;
+        }
+        .cursor.on {
+          width: 30px;
+          height: 30px;
+          background: var(--sage-muted);
+          mix-blend-mode: multiply;
+        }
+      }
+
+      /* NAV */
+      nav {
         position: fixed;
         top: 0;
         left: 0;
-        width: 30px;
-        height: 30px;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 22px 56px;
+        background: rgba(246, 244, 240, 0.9);
+        backdrop-filter: blur(14px);
+        transition:
+          padding 0.35s,
+          box-shadow 0.35s;
+      }
+      nav.sc {
+        padding: 15px 56px;
+        box-shadow: 0 1px 0 var(--border);
+      }
+      .nl {
+        font-family: var(--display);
+        font-style: italic;
+        font-size: 19px;
+        color: var(--ink);
+        text-decoration: none;
+      }
+      .nr {
+        display: flex;
+        gap: 40px;
+        align-items: center;
+      }
+      .nr a {
+        font-size: 13px;
+        font-weight: 400;
+        color: var(--mid);
+        text-decoration: none;
+        letter-spacing: 0.04em;
+        transition: color 0.2s;
+      }
+      .nr a:hover {
+        color: var(--ink);
+      }
+      .nc {
+        font-weight: 500 !important;
+        color: var(--ink) !important;
+        border-bottom: 1px solid var(--ink);
+        padding-bottom: 1px;
+        transition:
+          color 0.2s,
+          border-color 0.2s !important;
+      }
+      .nc:hover {
+        color: var(--sage) !important;
+        border-color: var(--sage) !important;
+      }
+
+      /* HERO */
+      .hero {
+        min-height: 100vh;
+        padding: 0 56px 80px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        padding-top: 6rem;
+      }
+      .hero-vert {
+        position: absolute;
+        top: 50%;
+        right: 56px;
+        transform: translateY(-50%);
+        writing-mode: vertical-rl;
+        font-size: 10px;
+        font-weight: 400;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--light);
+        opacity: 0;
+        animation: fi 1s 1.2s forwards;
+      }
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 40px;
+        opacity: 0;
+        animation: fu 0.7s 0.2s forwards;
+      }
+      .adot {
+        width: 7px;
+        height: 7px;
         border-radius: 50%;
-        pointer-events: none;
-        background: white;
-        mix-blend-mode: difference;
-        transform: translate(-50%, -50%);
-        transition: transform 0.15s ease;
-        z-index: 9999;
+        background: #7bc47f;
+        animation: br 2.5s ease-in-out infinite;
+      }
+      @keyframes br {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.45;
+          transform: scale(0.82);
+        }
+      }
+      .hero-badge span {
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--sage);
+      }
+      .hero h1 {
+        font-family: var(--display);
+        font-size: clamp(52px, 7.5vw, 110px);
+        line-height: 1;
+        letter-spacing: -0.02em;
+        color: var(--ink);
+        max-width: 900px;
+        opacity: 0;
+        animation: fu 0.9s 0.35s forwards;
+      }
+      .hero h1 em {
+        font-style: italic;
+        color: var(--sage);
+      }
+      .hero-bot {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-top: 52px;
+        gap: 40px;
+      }
+      .hero-sub {
+        max-width: 360px;
+        font-size: 15px;
+        font-weight: 300;
+        color: #666;
+        line-height: 1.8;
+        opacity: 0;
+        animation: fu 0.7s 0.6s forwards;
+      }
+      .hero-right-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 14px;
+        opacity: 0;
+        animation: fu 0.7s 0.75s forwards;
+      }
+      .hero-scroll {
+        font-size: 11px;
+        font-weight: 400;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--mid);
       }
 
-      .cursor-active {
-        transform: translate(-50%, -50%) scale(1.6);
+      /* BUTTONS */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--ink);
+        color: var(--paper);
+        padding: 14px 28px;
+        font-family: var(--body);
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: 0.05em;
+        text-decoration: none;
+        border: none;
+        transition:
+          background 0.25s,
+          gap 0.25s;
+      }
+      .btn:hover {
+        background: var(--sage);
+      }
+      .btn svg {
+        transition: transform 0.25s;
+      }
+      .btn:hover svg {
+        transform: translateX(4px);
+      }
+      .btn-ghost {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+        font-weight: 400;
+        color: var(--mid);
+        text-decoration: none;
+        letter-spacing: 0.04em;
+        transition:
+          color 0.2s,
+          gap 0.2s;
+      }
+      .btn-ghost:hover {
+        color: var(--ink);
+        gap: 12px;
       }
 
-      /* Disable cursor on mobile */
-      @media (max-width: 768px) {
-        #cursor {
+      hr.div {
+        border: none;
+        border-top: 1px solid var(--border);
+        margin: 0 56px;
+      }
+
+      /* OBSERVATION */
+      .obs {
+        padding: 100px 56px;
+        display: grid;
+        grid-template-columns: 200px 1fr 280px;
+        gap: 64px;
+        align-items: start;
+      }
+      .obs-lbl {
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--sage);
+        padding-top: 5px;
+        position: sticky;
+        top: 100px;
+      }
+      .obs-body p {
+        font-size: 17px;
+        font-weight: 300;
+        color: #4e4b48;
+        line-height: 1.9;
+        margin-bottom: 28px;
+      }
+      .obs-body p:last-child {
+        margin-bottom: 0;
+      }
+      .obs-body strong {
+        font-weight: 500;
+        color: var(--ink);
+      }
+      .obs-photo-col {
+        position: sticky;
+        top: 100px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .obs-photo {
+        width: 100%;
+        aspect-ratio: 3/4;
+        background: var(--paper-warm);
+        overflow: hidden;
+        position: relative;
+      }
+      .obs-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top;
+        display: block;
+        filter: grayscale(15%);
+        transition:
+          filter 0.4s,
+          transform 0.5s;
+      }
+      .obs-photo:hover img {
+        filter: grayscale(0%);
+        transform: scale(1.03);
+      }
+      .obs-photo-caption {
+        font-size: 12px;
+        font-weight: 400;
+        color: var(--mid);
+        line-height: 1.6;
+      }
+      .obs-photo-caption strong {
+        font-weight: 500;
+        color: var(--ink);
+        display: block;
+      }
+
+      /* WORK */
+      .work {
+        padding: 100px 56px;
+      }
+      .work-hd {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        margin-bottom: 56px;
+      }
+      .work-hd h2 {
+        font-family: var(--display);
+        font-size: clamp(30px, 4vw, 48px);
+        font-weight: 400;
+        line-height: 1.1;
+        letter-spacing: -0.01em;
+      }
+      .work-hd h2 em {
+        font-style: italic;
+        color: var(--sage);
+      }
+      .work-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2px;
+      }
+      .wi {
+        position: relative;
+        overflow: hidden;
+        background: var(--paper-warm);
+        aspect-ratio: 4/3;
+      }
+      .wi:first-child {
+        aspect-ratio: 4/3;
+      }
+      .wi-ph {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--display);
+        font-style: italic;
+        font-size: 13px;
+        color: var(--light);
+        background: var(--paper-warm);
+        transition: background 0.35s;
+      }
+      .wi:hover .wi-ph {
+        background: var(--sage-pale);
+      }
+      .wi-cap {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        padding: 22px 26px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        background: linear-gradient(transparent 40%, rgba(15, 15, 14, 0.58));
+        opacity: 0;
+        transform: translateY(6px);
+        transition:
+          opacity 0.3s,
+          transform 0.3s;
+      }
+      .wi:hover .wi-cap {
+        opacity: 1;
+        transform: none;
+      }
+      .wi-cap-t {
+        font-size: 14px;
+        font-weight: 500;
+        color: #fff;
+        margin-bottom: 4px;
+      }
+      .wi-cap-s {
+        font-size: 12px;
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.5;
+      }
+
+      /* SERVICES */
+      .svcs {
+        padding: 100px 56px;
+        background: var(--ink);
+      }
+      .svcs-top {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        margin-bottom: 80px;
+        align-items: end;
+      }
+      .svcs-top h2 {
+        font-family: var(--display);
+        font-size: clamp(30px, 4vw, 52px);
+        font-weight: 400;
+        line-height: 1.1;
+        letter-spacing: -0.01em;
+        color: var(--paper);
+      }
+      .svcs-top h2 em {
+        font-style: italic;
+        color: var(--sage-muted);
+      }
+      .svcs-top p {
+        font-size: 15px;
+        font-weight: 300;
+        color: #777;
+        line-height: 1.8;
+      }
+      .svcs-list {
+        border-top: 1px solid #252523;
+      }
+      .sr {
+        display: grid;
+        grid-template-columns: 52px 1fr 1fr auto;
+        gap: 40px;
+        align-items: start;
+        padding: 48px 0;
+        border-bottom: 1px solid #252523;
+        position: relative;
+        overflow: hidden;
+      }
+      .sr::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: #161614;
+        opacity: 0;
+        transition: opacity 0.25s;
+      }
+      .sr:hover::before {
+        opacity: 1;
+      }
+      .sr > * {
+        position: relative;
+        z-index: 1;
+      }
+      .sr-n {
+        font-family: var(--display);
+        font-style: italic;
+        font-size: 13px;
+        color: #3a3a38;
+        padding-top: 4px;
+      }
+      .sr-name {
+        font-family: var(--display);
+        font-size: 26px;
+        font-weight: 400;
+        color: var(--paper);
+        line-height: 1.2;
+      }
+      .sr-name em {
+        font-style: italic;
+        color: var(--sage-muted);
+      }
+      .sr-desc {
+        font-size: 14px;
+        font-weight: 300;
+        color: #666;
+        line-height: 1.75;
+        padding-top: 4px;
+      }
+      .sr-lnk {
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--sage-muted);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding-top: 4px;
+        white-space: nowrap;
+        transition:
+          color 0.2s,
+          gap 0.2s;
+      }
+      .sr-lnk:hover {
+        color: var(--paper);
+        gap: 10px;
+      }
+
+      /* PROCESS */
+      .proc {
+        padding: 100px 56px;
+      }
+      .proc-hd {
+        margin-bottom: 72px;
+      }
+      .proc-hd h2 {
+        font-family: var(--display);
+        font-size: clamp(30px, 4vw, 52px);
+        font-weight: 400;
+        line-height: 1.1;
+        letter-spacing: -0.01em;
+        max-width: 520px;
+      }
+      .proc-hd h2 em {
+        font-style: italic;
+        color: var(--sage);
+      }
+      .proc-hd p {
+        font-size: 15px;
+        font-weight: 300;
+        color: #777;
+        line-height: 1.8;
+        max-width: 460px;
+        margin-top: 20px;
+      }
+      .proc-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        border: 1px solid var(--border);
+      }
+      .ps {
+        padding: 40px 32px;
+        border-right: 1px solid var(--border);
+        position: relative;
+      }
+      .ps:last-child {
+        border-right: none;
+      }
+      .ps-n {
+        font-family: var(--display);
+        font-style: italic;
+        font-size: 48px;
+        color: var(--border);
+        line-height: 1;
+        margin-bottom: 20px;
+      }
+      .ps-t {
+        font-size: 15px;
+        font-weight: 500;
+        color: var(--ink);
+        margin-bottom: 10px;
+        line-height: 1.3;
+      }
+      .ps-b {
+        font-size: 13px;
+        font-weight: 300;
+        color: #888;
+        line-height: 1.7;
+      }
+      .ps-arr {
+        position: absolute;
+        top: 40px;
+        right: -11px;
+        width: 22px;
+        height: 22px;
+        background: var(--paper);
+        border: 1px solid var(--border);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
+        color: var(--sage);
+      }
+      .ps:last-child .ps-arr {
+        display: none;
+      }
+
+      /* TESTIMONIALS */
+      .testi {
+        padding: 100px 56px;
+        background: var(--sage-pale);
+      }
+      .testi-hd {
+        margin-bottom: 56px;
+      }
+      .testi-ey {
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--sage);
+        margin-bottom: 16px;
+      }
+      .testi-hd h2 {
+        font-family: var(--display);
+        font-size: clamp(26px, 3.5vw, 44px);
+        font-weight: 400;
+        line-height: 1.15;
+        letter-spacing: -0.01em;
+      }
+      .testi-hd h2 em {
+        font-style: italic;
+      }
+      .tg {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+      .tc {
+        background: var(--paper);
+        padding: 40px 36px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 32px;
+        transition:
+          transform 0.25s,
+          box-shadow 0.25s;
+      }
+      .tc:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+      }
+      .tc-mk {
+        font-family: var(--display);
+        font-size: 56px;
+        line-height: 0.8;
+        color: var(--sage-muted);
+        font-style: italic;
+      }
+      .tc-body {
+        font-family: var(--display);
+        font-style: italic;
+        font-size: 18px;
+        line-height: 1.6;
+        color: var(--ink);
+      }
+      .tc-name {
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--ink);
+        letter-spacing: 0.04em;
+      }
+      .tc-brand {
+        font-size: 12px;
+        font-weight: 300;
+        color: var(--sage);
+        margin-top: 2px;
+      }
+
+      /* FAQ */
+      .faq {
+        padding: 100px 56px;
+      }
+      .faq-in {
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        gap: 80px;
+        align-items: start;
+      }
+      .faq-l {
+        position: sticky;
+        top: 100px;
+      }
+      .faq-l h2 {
+        font-family: var(--display);
+        font-size: clamp(26px, 3vw, 40px);
+        font-weight: 400;
+        line-height: 1.15;
+        letter-spacing: -0.01em;
+        margin-bottom: 16px;
+      }
+      .faq-l h2 em {
+        font-style: italic;
+        color: var(--sage);
+      }
+      .faq-l p {
+        font-size: 14px;
+        font-weight: 300;
+        color: #888;
+        line-height: 1.75;
+      }
+      .fi {
+        border-bottom: 1px solid var(--border);
+      }
+      .fq {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 24px 0;
+        background: none;
+        border: none;
+        text-align: left;
+        gap: 24px;
+        font-family: var(--body);
+        font-size: 15px;
+        font-weight: 500;
+        color: var(--ink);
+        line-height: 1.4;
+        transition: color 0.2s;
+      }
+      .fq:hover {
+        color: var(--sage);
+      }
+      .fqi {
+        font-size: 22px;
+        font-weight: 300;
+        color: var(--sage);
+        flex-shrink: 0;
+        transition: transform 0.3s;
+        line-height: 1;
+        margin-top: 1px;
+      }
+      .fi.open .fqi {
+        transform: rotate(45deg);
+      }
+      .fa {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+      }
+      .fi.open .fa {
+        max-height: 400px;
+      }
+      .fa p {
+        font-size: 14px;
+        font-weight: 300;
+        color: #777;
+        line-height: 1.85;
+        padding-bottom: 28px;
+      }
+
+      /* CTA */
+      .cta {
+        padding: 120px 56px;
+        background: var(--ink);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: center;
+      }
+      .cta h2 {
+        font-family: var(--display);
+        font-size: clamp(36px, 5vw, 64px);
+        font-weight: 400;
+        line-height: 1.08;
+        letter-spacing: -0.02em;
+        color: var(--paper);
+      }
+      .cta h2 em {
+        font-style: italic;
+        color: var(--sage-muted);
+      }
+      .cta-r p {
+        font-size: 15px;
+        font-weight: 300;
+        color: #777;
+        line-height: 1.8;
+        margin-bottom: 40px;
+      }
+      .cta-contacts {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        margin-top: 36px;
+      }
+      .cta-c {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 14px;
+        font-weight: 300;
+        color: #666;
+        text-decoration: none;
+        letter-spacing: 0.02em;
+        transition: color 0.2s;
+        border-top: 1px solid #252523;
+        padding: 16px 0;
+      }
+      .cta-c:first-child {
+        border-top: none;
+        padding-top: 0;
+      }
+      .cta-c:hover {
+        color: var(--paper);
+      }
+      .cta-c svg {
+        color: var(--sage);
+        flex-shrink: 0;
+      }
+
+      /* FOOTER */
+      footer {
+        padding: 32px 56px;
+        border-top: 1px solid var(--border);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: var(--paper);
+      }
+      .fl {
+        font-family: var(--display);
+        font-style: italic;
+        font-size: 16px;
+        color: var(--ink);
+        text-decoration: none;
+      }
+      .fc {
+        font-size: 12px;
+        font-weight: 300;
+        color: var(--light);
+      }
+      .flinks {
+        display: flex;
+        gap: 24px;
+      }
+      .flinks a {
+        font-size: 12px;
+        font-weight: 300;
+        color: var(--mid);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .flinks a:hover {
+        color: var(--ink);
+      }
+
+      /* REVEAL */
+      .reveal {
+        opacity: 0;
+        transform: translateY(26px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
+      }
+      .reveal.in {
+        opacity: 1;
+        transform: none;
+      }
+      .rd1 {
+        transition-delay: 0.1s;
+      }
+      .rd2 {
+        transition-delay: 0.2s;
+      }
+      .rd3 {
+        transition-delay: 0.3s;
+      }
+      .rd4 {
+        transition-delay: 0.4s;
+      }
+
+      /* KEYFRAMES */
+      @keyframes fu {
+        from {
+          opacity: 0;
+          transform: translateY(22px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      @keyframes fi {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* LABEL UTIL */
+      .lbl {
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--sage);
+        margin-bottom: 20px;
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 960px) {
+        nav,
+        nav.sc {
+          padding: 16px 24px;
+        }
+        .hero,
+        .obs,
+        .work,
+        .svcs,
+        .proc,
+        .testi,
+        .faq,
+        .cta,
+        footer,
+        hr.div {
+          padding-left: 24px;
+          padding-right: 24px;
+        }
+        hr.div {
+          margin: 0;
+        }
+        .hero {
+          padding-bottom: 60px;
+        }
+        .hero-vert {
           display: none;
         }
-        body {
-          cursor: auto;
+        .hero-bot {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 28px;
+        }
+        .hero-right-wrap {
+          align-items: flex-start;
+        }
+        .obs {
+          grid-template-columns: 1fr;
+          gap: 28px;
+        }
+        .obs-lbl {
+          position: static;
+        }
+        .obs-photo-col {
+          position: static;
+          flex-direction: row;
+          align-items: center;
+          gap: 20px;
+        }
+        .obs-photo {
+          width: 100px;
+          aspect-ratio: 1/1;
+          flex-shrink: 0;
+          border-radius: 50%;
+        }
+        .work-grid {
+          grid-template-columns: 1fr;
+        }
+        .wi:first-child {
+          aspect-ratio: 4/3;
+        }
+        .svcs-top {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+        .sr {
+          grid-template-columns: 40px 1fr;
+          gap: 16px;
+        }
+        .sr-desc,
+        .sr-lnk {
+          display: none;
+        }
+        .proc-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .ps:nth-child(2) {
+          border-right: none;
+        }
+        .ps:nth-child(3) {
+          border-top: 1px solid var(--border);
+        }
+        .ps:last-child {
+          border-top: 1px solid var(--border);
+        }
+        .ps-arr {
+          display: none;
+        }
+        .tg {
+          grid-template-columns: 1fr;
+        }
+        .faq-in {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .faq-l {
+          position: static;
+        }
+        .cta {
+          grid-template-columns: 1fr;
+          gap: 48px;
+        }
+        footer {
+          flex-direction: column;
+          gap: 16px;
+          text-align: center;
         }
       }
     </style>
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        // Load header
-        fetch("header.html")
-          .then((res) => res.text())
-          .then((html) => {
-            document.getElementById("header-placeholder").innerHTML = html
-
-            // Initialize navbar scroll behavior after header loads
-            let lastScrollTop = 0
-            const navbar = document.getElementById("navbar")
-            let scrollDirection = null
-
-            window.addEventListener("scroll", () => {
-              const currentScroll =
-                window.pageYOffset || document.documentElement.scrollTop
-
-              if (currentScroll > 100) {
-                if (
-                  currentScroll > lastScrollTop &&
-                  scrollDirection !== "down"
-                ) {
-                  scrollDirection = "down"
-                  navbar.style.transform = "translateY(-100%)"
-                } else if (
-                  currentScroll < lastScrollTop &&
-                  scrollDirection !== "up"
-                ) {
-                  scrollDirection = "up"
-                  navbar.style.transform = "translateY(0)"
-                }
-              } else {
-                navbar.style.transform = "translateY(0)"
-                scrollDirection = null
-              }
-
-              lastScrollTop = currentScroll <= 0 ? 0 : currentScroll
-            })
-          })
-
-        // Load footer
-        fetch("footer.html")
-          .then((res) => res.text())
-          .then((html) => {
-            document.getElementById("footer-placeholder").innerHTML = html
-          })
-
-        // Load cursor
-        fetch("cursor.html")
-          .then((res) => res.text())
-          .then((html) => {
-            document.body.insertAdjacentHTML("beforeend", html)
-            initCursor()
-          })
-
-        // Scroll-reveal animation for About section
-        const aboutItems = document.querySelectorAll(".about-item")
-        const observerOptions = {
-          threshold: 0.1,
-          rootMargin: "0px 0px -50px 0px",
-        }
-
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("revealed")
-              observer.unobserve(entry.target)
-            }
-          })
-        }, observerOptions)
-
-        aboutItems.forEach((item) => observer.observe(item))
-      })
-
-      // Mobile menu functions
-      function openMobileMenu() {
-        const menu = document.getElementById("mobile-menu")
-        document.body.style.overflow = "hidden"
-        requestAnimationFrame(() => {
-          menu.classList.add("menu-open")
-        })
-      }
-
-      function closeMobileMenu() {
-        const menu = document.getElementById("mobile-menu")
-        menu.classList.remove("menu-open")
-        document.body.style.overflow = ""
-      }
-
-      // Custom cursor functionality
-      function initCursor() {
-        const cursor = document.getElementById("cursor")
-        if (!cursor) return
-
-        // Track mouse movement
-        document.addEventListener("mousemove", (e) => {
-          cursor.style.top = `${e.clientY}px`
-          cursor.style.left = `${e.clientX}px`
-        })
-
-        // Add hover effect on clickable elements
-        const clickables = document.querySelectorAll("a, button")
-        clickables.forEach((el) => {
-          el.addEventListener("mouseenter", () => {
-            cursor.classList.add("cursor-active")
-          })
-          el.addEventListener("mouseleave", () => {
-            cursor.classList.remove("cursor-active")
-          })
-        })
-      }
-    </script>
   </head>
-  <body class="bg-white text-gray-900 font-inter overflow-x-hidden">
-    <!-- Header -->
-    <div id="header-placeholder"></div>
+  <body>
+    <div class="cursor" id="cur"></div>
 
-    <!-- Hero -->
-    <section
-      class="w-full flex flex-col pt-24 pb-6 px-6 lg:px-20 justify-between min-h-screen"
-    >
-      <!-- Profile Section -->
-      <div
-        class="w-full flex flex-col-reverse lg:flex-row lg:items-start lg:justify-between gap-[30px] [font-feature-settings:'blwf','cv03','cv04','cv09','cv11']"
-      >
-        <!-- Name -->
-        <div class="flex flex-col items-start gap-2">
-          <div class="opacity-0 animate-fade-in-up-1">
-            <h1
-              class="font-bold text-black uppercase text-4xl lg:text-6xl tracking-tighter leading-tight"
-            >
-              KAVYA
-            </h1>
-          </div>
-          <div class="opacity-0 animate-fade-in-up-2">
-            <h1
-              class="font-bold text-black uppercase text-4xl lg:text-6xl tracking-tighter leading-tight"
-            >
-              BHATNAGAR
-            </h1>
-          </div>
-        </div>
-        <!-- Avatar -->
-        <div
-          class="relative w-[100px] h-[100px] lg:w-[150px] lg:h-[150px] rounded-full overflow-hidden flex-shrink-0 opacity-0 scale-0 animate-scale-in-3"
-        >
-          <div class="absolute inset-0 rounded-[inherit] bg-[#c8d1ca]">
-            <img
-              decoding="async"
-              src="assets/images/profile.png"
-              alt="Kavya Bhatnagar"
-              class="block w-full h-full object-cover object-center rounded-[inherit]"
-            />
-          </div>
-        </div>
+    <nav id="nav">
+      <a href="#" class="nl">Kavya</a>
+      <div class="nr">
+        <a href="#work">Work</a>
+        <a href="#services">Services</a>
+        <a href="#contact" class="nc">Let's talk</a>
       </div>
+    </nav>
 
-      <!-- Bio Section -->
-      <div
-        class="w-full flex flex-col lg:flex-row lg:justify-between lg:items-start gap-5 opacity-0 animate-fade-in-up-4"
-      >
-        <div class="flex items-center gap-2">
-          <p class="text-black text-sm tracking-tight">contact@heykavya.com</p>
-          <button
-            onclick="navigator.clipboard.writeText('hello@kavya.com')"
-            class="flex items-center justify-center p-2 cursor-pointer bg-transparent border-none hover:opacity-60 transition"
-          >
+    <!-- HERO -->
+    <section class="hero">
+      <span class="hero-vert">Shopify · Ecommerce · SEO · India</span>
+      <div class="hero-badge">
+        <span class="adot"></span>
+        <span>Available for new projects</span>
+      </div>
+      <h1>Sales don't improve<br />until the store <em>does.</em></h1>
+      <div class="hero-bot">
+        <p class="hero-sub">
+          Shopify setup, redesign, and SEO for Indian D2C brands that are
+          already putting in effort — and want their store to finally match it.
+        </p>
+        <div class="hero-right-wrap">
+          <a href="#contact" class="btn">
+            Start a conversation
             <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
+              width="14"
+              height="14"
               fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              viewBox="0 0 24 24"
             >
-              <path
-                d="M13.89 1.668H1.668v12.222h12.222V1.668z"
-                stroke="black"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M17 6.11h1.332v12.222H6.109V17"
-                stroke="black"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
+              <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
-          </button>
-        </div>
-        <p
-          class="text-black leading-tight text-base opacity-0 animate-fade-in-up-5 lg:max-w-sm"
-        >
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hello, I am a Shopify
-          & Ecommerce UI UX Designer based in Bengaluru, India. I design and
-          develop conversion-focused websites that outperform the competition.
-          Let's create!
-        </p>
-      </div>
-    </section>
-
-    <!-- Work -->
-    <section class="w-full border-t border-gray-200 px-6 lg:px-20 py-10">
-      <!-- Section Header -->
-      <div class="flex items-center justify-between mb-8">
-        <h5 class="text-black text-sm tracking-tight">work.</h5>
-        <a
-          href="/work.html"
-          class="bg-neutral-100 text-black text-xs lg:text-[18px] tracking-tight px-4 py-2 rounded-sm hover:opacity-80 transition"
-          >Show More</a
-        >
-      </div>
-
-      <!-- Project Cards -->
-      <div class="flex flex-col lg:grid lg:grid-cols-2 gap-5">
-        <!-- Card 1: Kavya Beauty Products -->
-        <a
-          href="https://dribbble.com/shots/26134881-Cosmetics-App-UI-Design-Beauty-Ecommerce-Mobile-App"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="relative block w-full aspect-square rounded-sm overflow-hidden group"
-        >
-          <img
-            decoding="async"
-            loading="lazy"
-            src="assets/images/fashion-products.webp"
-            alt="Stone Mind"
-            class="block w-full h-full object-cover object-center"
-          />
-          <div
-            class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300"
-          ></div>
-          <div
-            class="absolute bottom-0 left-0 p-5 lg:opacity-0 lg:group-hover:opacity-100 lg:translate-y-4 lg:group-hover:translate-y-0 transition-all duration-300"
-          >
-            <h4 class="text-white text-sm lg:text-2xl tracking-tight">
-              Beauty Ecommerce Mobile App UI UX Design
-            </h4>
-          </div>
-        </a>
-
-        <!-- Card 2: Bakery Brand -->
-        <a
-          href="https://dribbble.com/shots/26986886-Cr-me-Bakery-Website-UI-UX-Design"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="relative block w-full aspect-square rounded-sm overflow-hidden group"
-        >
-          <img
-            decoding="async"
-            loading="lazy"
-            src="assets/images/cake-website-design.webp"
-            alt="Violet Orbit"
-            class="block w-full h-full object-cover object-top object-center"
-          />
-          <div
-            class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300"
-          ></div>
-          <div
-            class="absolute bottom-0 left-0 p-5 lg:opacity-0 lg:group-hover:opacity-100 lg:translate-y-4 lg:group-hover:translate-y-0 transition-all duration-300"
-          >
-            <h4 class="text-white text-sm lg:text-2xl tracking-tight">
-              Bakery Ecommerce Website UI UX Design
-            </h4>
-          </div>
-        </a>
-
-        <!-- Card 3: Handbag Store -->
-        <a
-          href="https://dribbble.com/shots/26471442-High-Fashion-Leather-Brand-Landing-Page-Design"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="relative block w-full aspect-square rounded-sm overflow-hidden group"
-        >
-          <img
-            decoding="async"
-            loading="lazy"
-            src="assets/images/bag-website-design.png"
-            alt="Visual Screen Models"
-            class="block w-full h-full object-cover object-top object-center"
-          />
-          <div
-            class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300"
-          ></div>
-          <div
-            class="absolute bottom-0 left-0 p-5 lg:opacity-0 lg:group-hover:opacity-100 lg:translate-y-4 lg:group-hover:translate-y-0 transition-all duration-300"
-          >
-            <h4 class="text-white text-sm lg:text-2xl tracking-tight">
-              Luxury Leather Handbag Shopify Store
-            </h4>
-          </div>
-        </a>
-
-        <!-- Card 7: Flexible Area Models -->
-        <a
-          href="https://dribbble.com/shots/26975020-Aur-a-Jewellery-Brand-Web-Design"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="relative block w-full aspect-square rounded-sm overflow-hidden group"
-        >
-          <img
-            decoding="async"
-            loading="lazy"
-            src="assets/images/jewellery.webp"
-            alt="Flexible Area Models"
-            class="block w-full h-full object-cover object-top object-center"
-          />
-          <div
-            class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300"
-          ></div>
-          <div
-            class="absolute bottom-0 left-0 p-5 lg:opacity-0 lg:group-hover:opacity-100 lg:translate-y-4 lg:group-hover:translate-y-0 transition-all duration-300"
-          >
-            <h4 class="text-white text-sm lg:text-2xl tracking-tight">
-              Jewellery Ecommerce Landing Page Design
-            </h4>
-          </div>
-        </a>
-      </div>
-    </section>
-
-    <!-- About -->
-    <section class="w-full border-t border-gray-200 px-6 lg:px-20 py-10">
-      <!-- Section Header -->
-      <div class="flex items-center justify-between mb-8">
-        <h5 class="about-item text-black text-sm tracking-tight">about.</h5>
-        <a
-          href="/about.html"
-          class="about-item bg-neutral-100 text-black text-xs lg:text-[18px] tracking-tight px-4 py-2 rounded-sm hover:opacity-80 transition"
-          >Show More</a
-        >
-      </div>
-
-      <!-- Text Section -->
-      <div class="mb-8">
-        <p class="about-item text-black leading-tight text-base lg:max-w-sm">
-          I design and build conversion-focused Shopify and ecommerce websites
-          for brands worldwide, combining strong UI UX with clean execution.
-        </p>
-      </div>
-
-      <!-- Image Section -->
-      <div
-        class="flex flex-col lg:flex-row lg:max-w-lg mx-auto lg:items-center lg:justify-center gap-8"
-      >
-        <div
-          class="about-item about-image relative w-full aspect-square rounded-sm overflow-hidden"
-        >
-          <img
-            decoding="async"
-            loading="lazy"
-            src="assets/images/kavya.jpeg"
-            alt="About photo"
-            class="block w-full h-full object-cover object-center"
-          />
-        </div>
-        <p
-          class="about-item about-text text-gray-900 leading-tight text-[18px] lg:max-w-xs"
-        >
-          I work with founders and small teams — especially D2C brands,
-          Instagram sellers, and growing ecommerce businesses who want their
-          website to feel premium and actually drive results. Many stores look
-          good on the surface but struggle underneath, visitors hesitate because
-          the brand does not feel trustworthy yet, navigation feels unclear, or
-          the site is not designed to support growth and scale. I solve this by
-          designing clear, intuitive experiences backed by thoughtful UX
-          decisions, clean UI, and on-page SEO best practices, so your website
-          is easy to use, easy to find, and ready to grow your business.
-        </p>
-      </div>
-    </section>
-
-    <!-- FAQs -->
-    <section class="w-full border-t border-gray-200 px-6 lg:px-20 py-10">
-      <div class="flex items-center justify-between mb-8">
-        <h5 class="text-black text-sm tracking-tight">FAQs.</h5>
-      </div>
-
-      <div
-        class="flex flex-row justify-end lg:flex-row gap-8 lg:gap-16 max-w-6xl mx-auto"
-      >
-        <!-- Right: FAQ Items -->
-        <div class="flex flex-col gap-2 lg:w-4/5">
-          <!-- FAQ 1 -->
-          <div class="bg-neutral-100 rounded-sm overflow-hidden">
-            <button
-              onclick="toggleFAQ('faq1')"
-              class="w-full flex items-center justify-between p-4 text-left hover:opacity-80 transition"
-            >
-              <h5 class="text-black w-5/6 lg:w-auto text-[20px] tracking-tight">
-                What is your creative design process like?
-              </h5>
-              <div class="flex-shrink-0 w-2 h-2 relative">
-                <span
-                  id="faq1-icon-h"
-                  class="absolute top-1/2 left-0 w-full h-[2px] bg-black transform -translate-y-1/2 transition-transform duration-300"
-                ></span>
-                <span
-                  id="faq1-icon-v"
-                  class="absolute top-0 left-1/2 w-[2px] h-full bg-black transform -translate-x-1/2 transition-transform duration-300"
-                ></span>
-              </div>
-            </button>
-            <div
-              id="faq1"
-              class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
-            >
-              <div class="px-4 pb-6">
-                <p
-                  class="about-item about-text text-gray-900 leading-tight text-[18px]"
-                >
-                  My design process starts with fully understanding your goals
-                  and needs. I begin with research and brainstorming to gather
-                  insights, followed by sketching initial concepts. Once we
-                  agree on a creative direction, I develop detailed designs and
-                  make revisions based on your feedback. I strive for a
-                  seamless, collaborative process, ensuring that each step
-                  brings us closer to the perfect solution.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- FAQ 2 -->
-          <div class="bg-neutral-100 rounded-sm overflow-hidden">
-            <button
-              onclick="toggleFAQ('faq2')"
-              class="w-full flex items-center justify-between p-4 text-left hover:opacity-80 transition"
-            >
-              <h5 class="text-black w-5/6 lg:w-auto text-[20px] tracking-tight">
-                What is your typical project timeline?
-              </h5>
-              <div class="flex-shrink-0 w-2 h-2 relative">
-                <span
-                  id="faq2-icon-h"
-                  class="absolute top-1/2 left-0 w-full h-[2px] bg-black transform -translate-y-1/2 transition-transform duration-300"
-                ></span>
-                <span
-                  id="faq2-icon-v"
-                  class="absolute top-0 left-1/2 w-[2px] h-full bg-black transform -translate-x-1/2 transition-transform duration-300"
-                ></span>
-              </div>
-            </button>
-            <div
-              id="faq2"
-              class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
-            >
-              <div class="px-4 pb-6">
-                <p
-                  class="about-item about-text text-gray-900 leading-tight text-[18px]"
-                >
-                  Project timelines vary depending on scope and complexity. A
-                  typical website project takes 2-4 weeks from start to finish,
-                  including discovery, design, revisions, and final delivery.
-                  I'll provide a detailed timeline during our initial
-                  consultation.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- FAQ 3 -->
-          <div class="bg-neutral-100 rounded-sm overflow-hidden">
-            <button
-              onclick="toggleFAQ('faq3')"
-              class="w-full flex items-center justify-between p-4 text-left hover:opacity-80 transition"
-            >
-              <h5 class="text-black w-5/6 lg:w-auto text-[20px] tracking-tight">
-                How do I get started on a project with you?
-              </h5>
-              <div class="flex-shrink-0 w-2 h-2 relative">
-                <span
-                  id="faq3-icon-h"
-                  class="absolute top-1/2 left-0 w-full h-[2px] bg-black transform -translate-y-1/2 transition-transform duration-300"
-                ></span>
-                <span
-                  id="faq3-icon-v"
-                  class="absolute top-0 left-1/2 w-[2px] h-full bg-black transform -translate-x-1/2 transition-transform duration-300"
-                ></span>
-              </div>
-            </button>
-            <div
-              id="faq3"
-              class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
-            >
-              <div class="px-4 pb-6">
-                <p
-                  class="about-item about-text text-gray-900 leading-tight text-[18px]"
-                >
-                  Simply reach out via email or the contact form. We'll schedule
-                  a consultation call to discuss your project goals, timeline,
-                  and budget. After that, I'll send you a proposal and we can
-                  move forward from there.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- FAQ 4 -->
-          <div class="bg-neutral-100 rounded-sm overflow-hidden">
-            <button
-              onclick="toggleFAQ('faq4')"
-              class="w-full flex items-center justify-between p-4 text-left hover:opacity-80 transition"
-            >
-              <h5 class="text-black w-5/6 lg:w-auto text-[20px] tracking-tight">
-                What should I do if you're fully booked?
-              </h5>
-              <div class="flex-shrink-0 w-2 h-2 relative">
-                <span
-                  id="faq4-icon-h"
-                  class="absolute top-1/2 left-0 w-full h-[2px] bg-black transform -translate-y-1/2 transition-transform duration-300"
-                ></span>
-                <span
-                  id="faq4-icon-v"
-                  class="absolute top-0 left-1/2 w-[2px] h-full bg-black transform -translate-x-1/2 transition-transform duration-300"
-                ></span>
-              </div>
-            </button>
-            <div
-              id="faq4"
-              class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
-            >
-              <div class="px-4 pb-6">
-                <p
-                  class="about-item about-text text-gray-900 leading-tight text-[18px]"
-                >
-                  I maintain a waitlist for upcoming availability. Reach out and
-                  I'll add you to the queue with an estimated start date. I'll
-                  notify you as soon as a slot opens up.
-                </p>
-              </div>
-            </div>
-          </div>
+          </a>
+          <span class="hero-scroll">Scroll to explore</span>
         </div>
       </div>
     </section>
 
-    <!-- Testimonials -->
-    <section class="w-full border-t border-gray-200 px-6 lg:px-20 py-10">
-      <div class="flex items-center justify-between mb-12">
-        <h5 class="text-black text-sm tracking-tight">testimonials.</h5>
-      </div>
+    <hr class="div" />
 
-      <div class="max-w-4xl mx-auto space-y-16">
-        <!-- Testimonial 1 - Left Aligned -->
-        <!-- <div
-          class="about-item flex flex-col lg:flex-row items-start lg:items-center gap-6"
-        >
-          <div class="flex-1">
+    <!-- OBSERVATION -->
+    <section class="obs">
+      <p class="obs-lbl reveal">What's actually happening</p>
+      <div class="obs-body">
+        <p class="reveal rd1">
+          Indian D2C has quietly matured. A few years ago, having a website at
+          all gave you an edge. Customers were impressed just by the fact that
+          you had one. That's no longer true. The bar has moved — and most
+          stores haven't moved with it.
+        </p>
+        <p class="reveal rd2">
+          Today's buyer doesn't need to be convinced to shop online. They
+          already do it constantly. What they're doing when they land on your
+          store is something different: they're
+          <strong>checking if you're worth trusting.</strong> They scroll, they
+          read, they look at product pages, and they notice whether things feel
+          polished or hurried. A decision gets made in seconds — without them
+          telling you anything.
+        </p>
+        <p class="reveal rd3">
+          The result is that founders are putting genuine effort in — running
+          ads, staying consistent on Instagram, responding to every DM — and the
+          results still don't match. The store looks fine on the surface. But
+          somewhere in the flow, something is quietly working against the sale.
+          A product page that doesn't answer the right questions. A checkout
+          that creates small hesitations. Trust signals in the wrong place, or
+          missing entirely.
+        </p>
+        <p class="reveal rd4">
+          <strong>This isn't a marketing problem.</strong> It's a clarity
+          problem. And fixing it doesn't require more traffic — it requires a
+          store that does its job properly when the right person arrives.
+        </p>
+      </div>
+      <div class="obs-photo-col reveal rd2">
+        <div class="obs-photo" id="photoWrap">
+          <picture>
+            <source media="(max-width: 960px)" srcset="assets/images/profile.png" />
             <img
-              src="assets/images/quote.png"
-              alt="Quote"
-              class="mb-4 w-6 h-6 transform rotate-180"
+              src="assets/images/kavya.jpeg"
+              alt="Kavya Bhatnagar"
             />
-            <p
-              class="text-black leading-tight text-base opacity-0 animate-fade-in-up-5 lg:max-w-sm"
-            >
-              Working with Kavya was a game-changer for our brand. She
-              transformed our Shopify store into a conversion machine while
-              keeping our brand identity intact.
+          </picture>
+        </div>
+        <p class="obs-photo-caption">
+          <strong>Kavya Bhatnagar</strong>
+          Shopify & Ecommerce Designer<br />based in Bengaluru, India
+        </p>
+      </div>
+    </section>
+
+    <hr class="div" />
+
+    <!-- WORK -->
+    <section class="work" id="work">
+      <div class="work-hd reveal">
+        <h2>Some things<br />I've <em>worked on.</em></h2>
+        <a href="#" class="btn-ghost">
+          See all work
+          <svg
+            width="12"
+            height="12"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            viewBox="0 0 24 24"
+          >
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+      <div class="work-grid">
+        <div class="wi reveal">
+          <img src="assets/images/bag-website-design.png" alt="Luxury Leather Handbag — Shopify Store" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;display:block" />
+          <div class="wi-cap">
+            <p class="wi-cap-t">Luxury Leather Handbag Brand</p>
+            <p class="wi-cap-s">
+              A premium brand moving from offline retail. The brief was to make
+              the online experience feel as considered as their product.
             </p>
-            <div class="flex flex-col gap-1 mt-4">
-              <p class="text-black font-bold text-sm">Ashok Shetty</p>
-              <p class="text-gray-600 text-xs">Founder, Noor Jewellery</p>
-            </div>
-          </div>
-        </div> -->
-
-        <!-- Testimonial 2 - Right Aligned -->
-        <div
-          class="about-item flex flex-col lg:flex-row-reverse items-start lg:items-center gap-6"
-        >
-          <div class="flex-1 lg:text-right">
-            <img
-              src="assets/images/quote.png"
-              alt="Quote"
-              class="mb-4 w-6 h-6 lg:ml-auto transform rotate-180 scale-x-[-1]"
-            />
-            <p
-              class="text-black ml-auto leading-tight text-base opacity-0 animate-fade-in-up-5 lg:max-w-sm"
-            >
-              Kavya delivered exactly what we needed. Clean, modern design with
-              a focus on user experience. Our customers love the new site and
-              our sales show it.
-            </p>
-            <div class="flex flex-col gap-1 mt-4">
-              <p class="text-black font-bold text-sm">Kavitha K.</p>
-              <p class="text-gray-600 text-xs">Founder, Nityaara Collections</p>
-            </div>
           </div>
         </div>
+        <div class="wi reveal rd1">
+          <img src="assets/images/fashion-products.webp" alt="Beauty Ecommerce Mobile App" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;display:block" />
+          <div class="wi-cap">
+            <p class="wi-cap-t">Beauty Ecommerce App</p>
+            <p class="wi-cap-s">
+              D2C skincare brand scaling beyond Instagram. Needed mobile-first
+              clarity for a customer who browses fast and decides faster.
+            </p>
+          </div>
+        </div>
+        <div class="wi reveal rd2">
+          <img src="assets/images/cake-website-design.webp" alt="Bakery Ecommerce Website" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;display:block" />
+          <div class="wi-cap">
+            <p class="wi-cap-t">Artisan Bakery</p>
+            <p class="wi-cap-s">
+              A home-baked brand with real demand but no system behind it. Built
+              to make ordering feel as easy as a WhatsApp message.
+            </p>
+          </div>
+        </div>
+        <div class="wi reveal rd1">
+          <img src="assets/images/jewellery.webp" alt="Jewellery Landing Page" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;display:block" />
+          <div class="wi-cap">
+            <p class="wi-cap-t">Jewellery Brand</p>
+            <p class="wi-cap-s">
+              Conversion-focused entry point for a brand running paid ads —
+              designed to land buyers, not just browsers.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <!-- Testimonial 3 - Left Aligned -->
-        <div
-          class="about-item flex flex-col lg:flex-row items-start lg:items-center gap-6"
-        >
-          <div class="flex-1">
-            <img
-              src="assets/images/quote.png"
-              alt="Quote"
-              class="mb-4 w-6 h-6 transform rotate-180"
-            />
-            <p
-              class="text-black leading-tight text-base opacity-0 animate-fade-in-up-5 lg:max-w-sm"
+    <!-- SERVICES -->
+    <section class="svcs" id="services">
+      <div class="svcs-top">
+        <h2 class="reveal">Three ways<br />I can <em>help.</em></h2>
+        <p class="reveal rd2">
+          Most store problems trace back to one of three situations. You're
+          building from scratch and want it done properly. You have a store that
+          isn't converting despite real effort. Or your business is too
+          dependent on one channel and that needs to change.
+        </p>
+      </div>
+      <div class="svcs-list">
+        <div class="sr reveal">
+          <span class="sr-n">01</span>
+          <div class="sr-name">
+            Store Setup<br /><em>for Growing Brands</em>
+          </div>
+          <p class="sr-desc">
+            You're already selling — through Instagram, WhatsApp, or word of
+            mouth. The demand is real but the system is fragile. This builds you
+            a proper Shopify store that handles volume, looks credible, and
+            doesn't depend on DMs to function.
+          </p>
+          <a href="#contact" class="sr-lnk"
+            >Talk about this
+            <svg
+              width="11"
+              height="11"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              viewBox="0 0 24 24"
             >
+              <path d="M5 12h14M12 5l7 7-7 7" /></svg
+          ></a>
+        </div>
+        <div class="sr reveal rd1">
+          <span class="sr-n">02</span>
+          <div class="sr-name">Store Redesign<br /><em>for Conversion</em></div>
+          <p class="sr-desc">
+            Your store exists. Traffic comes. But something between arrival and
+            purchase is breaking. This isn't a cosmetic redesign — it's a
+            structural one. I look at how customers actually move through your
+            store, where they hesitate, where trust drops, and rebuild it so the
+            experience supports the sale.
+          </p>
+          <a href="#contact" class="sr-lnk"
+            >Talk about this
+            <svg
+              width="11"
+              height="11"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              viewBox="0 0 24 24"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" /></svg
+          ></a>
+        </div>
+        <div class="sr reveal rd2">
+          <span class="sr-n">03</span>
+          <div class="sr-name">SEO &<br /><em>Discoverability</em></div>
+          <p class="sr-desc">
+            You want customers who find you, not just ones you reach out to.
+            This builds the discoverability foundation — site structure, on-page
+            optimisation, search-intent pages — so your website starts earning
+            attention instead of waiting for it. A foundation built properly, so
+            it has a real chance to work.
+          </p>
+          <a href="#contact" class="sr-lnk"
+            >Talk about this
+            <svg
+              width="11"
+              height="11"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              viewBox="0 0 24 24"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" /></svg
+          ></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="proc">
+      <div class="proc-hd">
+        <p class="lbl reveal">How I work</p>
+        <h2 class="reveal rd1">I don't start<br />with <em>design.</em></h2>
+        <p class="reveal rd2">
+          Design is the last step. Before anything gets built, I need to
+          understand your business, your customers, and where the current
+          experience is losing people.
+        </p>
+      </div>
+      <div class="proc-grid">
+        <div class="ps reveal">
+          <div class="ps-n">1</div>
+          <h4 class="ps-t">We talk first.</h4>
+          <p class="ps-b">
+            One conversation before anything else. I understand your business,
+            what you sell, who buys it, and what's not working. No proposals
+            before this.
+          </p>
+          <div class="ps-arr">
+            <svg
+              width="10"
+              height="10"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              viewBox="0 0 24 24"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </div>
+        </div>
+        <div class="ps reveal rd1">
+          <div class="ps-n">2</div>
+          <h4 class="ps-t">I research your space.</h4>
+          <p class="ps-b">
+            Your niche, your competitors, what customers expect when they land
+            on a store like yours — and what could actually set you apart.
+          </p>
+          <div class="ps-arr">
+            <svg
+              width="10"
+              height="10"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              viewBox="0 0 24 24"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </div>
+        </div>
+        <div class="ps reveal rd2">
+          <div class="ps-n">3</div>
+          <h4 class="ps-t">I build with intention.</h4>
+          <p class="ps-b">
+            Clean execution. Three revision rounds. Direct communication
+            throughout. You work with me — not a junior, not someone who doesn't
+            know your brief.
+          </p>
+          <div class="ps-arr">
+            <svg
+              width="10"
+              height="10"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              viewBox="0 0 24 24"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </div>
+        </div>
+        <div class="ps reveal rd3">
+          <div class="ps-n">4</div>
+          <h4 class="ps-t">You get a store that works.</h4>
+          <p class="ps-b">
+            Not just one that looks good. One that supports how your business
+            actually runs — and is ready for what comes next.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testi">
+      <div class="testi-hd">
+        <p class="testi-ey reveal">From clients</p>
+        <h2 class="reveal rd1">
+          What changed after<br />we <em>worked together.</em>
+        </h2>
+      </div>
+      <div class="tg">
+        <div class="tc reveal rd1">
+          <div>
+            <div class="tc-mk">"</div>
+            <p class="tc-body">
+              Clean, modern design with a real focus on user experience. Our
+              customers love the new site — and our sales show it.
+            </p>
+          </div>
+          <div>
+            <p class="tc-name">Kavitha K.</p>
+            <p class="tc-brand">Founder, Nityaara Collections</p>
+          </div>
+        </div>
+        <div class="tc reveal rd2">
+          <div>
+            <div class="tc-mk">"</div>
+            <p class="tc-body">
               Her attention to detail and understanding of ecommerce best
-              practices made all the difference. Highly recommend for any D2C
-              brand looking to scale.
+              practices made all the difference. I'd recommend her to any D2C
+              brand serious about growing.
             </p>
-            <div class="flex flex-col gap-1 mt-4">
-              <p class="text-black font-bold text-sm">Hamna Shamim</p>
-              <p class="text-gray-600 text-xs">Brand Founder, Epidermis</p>
-            </div>
+          </div>
+          <div>
+            <p class="tc-name">Hamna Shamim</p>
+            <p class="tc-brand">Brand Founder, Epidermis</p>
           </div>
         </div>
-
-        <!-- Testimonial 4 - Right Aligned -->
-        <div
-          class="about-item flex flex-col lg:flex-row-reverse items-start lg:items-center gap-6"
-        >
-          <div class="flex-1 lg:text-right">
-            <img
-              src="assets/images/quote.png"
-              alt="Quote"
-              class="mb-4 w-6 h-6 lg:ml-auto transform rotate-180 scale-x-[-1]"
-            />
-            <p
-              class="text-black ml-auto leading-tight text-base opacity-0 animate-fade-in-up-5 lg:max-w-sm"
-            >
+        <div class="tc reveal rd3">
+          <div>
+            <div class="tc-mk">"</div>
+            <p class="tc-body">
               From concept to launch, Kavya made the entire process smooth and
               enjoyable. The final product exceeded our expectations in every
               way.
             </p>
-            <div class="flex flex-col gap-1 mt-4">
-              <p class="text-black font-bold text-sm">Abhyas Kumar</p>
-              <p class="text-gray-600 text-xs">Founder, Tiny House of Joy</p>
+          </div>
+          <div>
+            <p class="tc-name">Abhyas Kumar</p>
+            <p class="tc-brand">Founder, Tiny House of Joy</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+      <div class="faq-in">
+        <div class="faq-l">
+          <h2 class="reveal">A few things<br />people <em>ask.</em></h2>
+          <p class="reveal rd1">
+            If something isn't answered here, the easiest thing is to just reach
+            out directly.
+          </p>
+        </div>
+        <div class="reveal rd1">
+          <div class="fi">
+            <button class="fq" onclick="tf(this)">
+              My store gets traffic but no sales. Where does the problem usually
+              live?<span class="fqi">+</span>
+            </button>
+            <div class="fa">
+              <p>
+                Usually it's not traffic — it's clarity. Visitors arrive but
+                can't quickly understand why your product is right for them, or
+                something in the experience creates hesitation before checkout.
+                The design can look fine while the structure underneath quietly
+                breaks the sale. That's exactly what a store redesign is meant
+                to find and fix.
+              </p>
+            </div>
+          </div>
+          <div class="fi">
+            <button class="fq" onclick="tf(this)">
+              How long does a project typically take?<span class="fqi">+</span>
+            </button>
+            <div class="fa">
+              <p>
+                Store redesigns usually take 2–4 weeks. New store setups
+                typically take 1–2 weeks. The timeline depends on scope, and
+                I'll always be clear about it before we start — not after.
+              </p>
+            </div>
+          </div>
+          <div class="fi">
+            <button class="fq" onclick="tf(this)">
+              Do you only work with brands that already have a store?<span
+                class="fqi"
+                >+</span
+              >
+            </button>
+            <div class="fa">
+              <p>
+                Not exclusively. But I work best with brands that have already
+                proven demand — meaning customers want what you're selling, even
+                if the system around it needs work. If you're still figuring out
+                product-market fit, a store redesign won't solve that yet.
+              </p>
+            </div>
+          </div>
+          <div class="fi">
+            <button class="fq" onclick="tf(this)">
+              What does working with you actually look like day to day?<span
+                class="fqi"
+                >+</span
+              >
+            </button>
+            <div class="fa">
+              <p>
+                Direct, fast communication — you hear from me, not someone
+                passing messages along. I ask questions when I need to, share
+                progress at each stage, and don't disappear between calls. Three
+                revision rounds are included in every project, and I'm clear
+                about scope before we begin.
+              </p>
+            </div>
+          </div>
+          <div class="fi">
+            <button class="fq" onclick="tf(this)">
+              How do you price your work?<span class="fqi">+</span>
+            </button>
+            <div class="fa">
+              <p>
+                Pricing depends on what the project actually needs — scope,
+                complexity, and your stage as a business. I'd rather give you a
+                clear, honest number after a short conversation than post a rate
+                that either over-promises or undersells. Reach out and we'll
+                figure it out together.
+              </p>
+            </div>
+          </div>
+          <div class="fi">
+            <button class="fq" onclick="tf(this)">
+              Is SEO included in a store redesign?<span class="fqi">+</span>
+            </button>
+            <div class="fa">
+              <p>
+                On-page fundamentals — clean URL structure, meta setup, page
+                speed — are part of every redesign. A full discoverability
+                foundation (keyword research, content structure, analytics) is a
+                separate service. I'll recommend it if your stage genuinely
+                calls for it, and not otherwise.
+              </p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Footer -->
-    <div id="footer-placeholder"></div>
+    <!-- CTA -->
+    <section class="cta" id="contact">
+      <h2 class="reveal">
+        If your store exists<br />but <em>isn't helping<br />much</em> —
+        that's<br />worth fixing.
+      </h2>
+      <div class="cta-r reveal rd2">
+        <p>
+          One conversation is enough to know whether I can help. No pitch, no
+          pressure — just a clear look at where things stand and what might
+          change.
+        </p>
+        <a
+          href="mailto:contact@heykavya.com"
+          class="btn"
+          style="display: inline-flex"
+        >
+          Send a message
+          <svg
+            width="14"
+            height="14"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            viewBox="0 0 24 24"
+          >
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </a>
+        <div class="cta-contacts">
+          <a href="mailto:contact@heykavya.com" class="cta-c">
+            <svg
+              width="14"
+              height="14"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+              />
+              <polyline points="22,6 12,13 2,6" />
+            </svg>
+            contact@heykavya.com
+          </a>
+          <a href="tel:+919187022234" class="cta-c">
+            <svg
+              width="14"
+              height="14"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.1 2.18 2 2 0 012.11 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"
+              />
+            </svg>
+            +91 91870 22234
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <a href="#" class="fl">Kavya Bhatnagar</a>
+      <p class="fc">Designed & developed by Kavya Bhatnagar · ©2026</p>
+      <div class="flinks">
+        <a href="#" target="_blank">Dribbble</a>
+        <a href="#" target="_blank">Behance</a>
+        <a href="#" target="_blank">Pinterest</a>
+      </div>
+    </footer>
 
     <script>
-      function toggleFAQ(id) {
-        const content = document.getElementById(id)
-        const iconV = document.getElementById(id + "-icon-v")
-        const isOpen =
-          content.style.maxHeight && content.style.maxHeight !== "0px"
-
-        // Close all FAQs
-        document.querySelectorAll('[id^="faq"]').forEach((faq) => {
-          if (faq.id.includes("-icon")) return
-          faq.style.maxHeight = "0"
+      // Cursor (only on devices with a fine pointer)
+      if (matchMedia("(pointer:fine)").matches) {
+        const cur = document.getElementById("cur")
+        let mx = 0,
+          my = 0,
+          cx = 0,
+          cy = 0
+        document.addEventListener("mousemove", (e) => {
+          mx = e.clientX
+          my = e.clientY
         })
-
-        // Reset all icons to +
-        document.querySelectorAll('[id$="-icon-v"]').forEach((icon) => {
-          icon.style.transform = "translateX(-50%)"
+        document.querySelectorAll("a,button").forEach((el) => {
+          el.addEventListener("mouseenter", () => cur.classList.add("on"))
+          el.addEventListener("mouseleave", () => cur.classList.remove("on"))
         })
+        ;(function loop() {
+          cx += (mx - cx) * 0.16
+          cy += (my - cy) * 0.16
+          cur.style.left = cx + "px"
+          cur.style.top = cy + "px"
+          requestAnimationFrame(loop)
+        })()
+      }
 
-        // Toggle current FAQ
-        if (!isOpen) {
-          content.style.maxHeight = content.scrollHeight + "px"
-          iconV.style.transform = "translateX(-50%) rotate(90deg)"
-        }
+      // Nav
+      const nav = document.getElementById("nav")
+      window.addEventListener(
+        "scroll",
+        () => nav.classList.toggle("sc", scrollY > 30),
+        { passive: true },
+      )
+
+      // Reveal
+      const obs = new IntersectionObserver(
+        (en) =>
+          en.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("in")
+              obs.unobserve(e.target)
+            }
+          }),
+        { threshold: 0.1 },
+      )
+      document.querySelectorAll(".reveal").forEach((el) => obs.observe(el))
+
+      // FAQ
+      function tf(btn) {
+        const it = btn.parentElement,
+          op = it.classList.contains("open")
+        document
+          .querySelectorAll(".fi.open")
+          .forEach((i) => i.classList.remove("open"))
+        if (!op) it.classList.add("open")
       }
     </script>
   </body>

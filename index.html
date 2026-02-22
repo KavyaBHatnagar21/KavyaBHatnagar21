@@ -117,7 +117,7 @@
       .nl {
         font-family: var(--display);
         font-style: italic;
-        font-size: 19px;
+        font-size: 22px;
         color: var(--ink);
         text-decoration: none;
       }
@@ -168,11 +168,11 @@
         right: 56px;
         transform: translateY(-50%);
         writing-mode: vertical-rl;
-        font-size: 10px;
+        font-size: 12px;
         font-weight: 400;
         letter-spacing: 0.18em;
         text-transform: uppercase;
-        color: var(--light);
+        color: var(--mid);
         opacity: 0;
         animation: fi 1s 1.2s forwards;
       }
@@ -232,7 +232,7 @@
       }
       .hero-sub {
         max-width: 360px;
-        font-size: 15px;
+        font-size: 18px;
         font-weight: 300;
         color: #666;
         line-height: 1.8;
@@ -264,7 +264,7 @@
         color: var(--paper);
         padding: 14px 28px;
         font-family: var(--body);
-        font-size: 13px;
+        font-size: 14px;
         font-weight: 500;
         letter-spacing: 0.05em;
         text-decoration: none;
@@ -286,7 +286,7 @@
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        font-size: 13px;
+        font-size: 14px;
         font-weight: 400;
         color: var(--mid);
         text-decoration: none;
@@ -306,37 +306,51 @@
         margin: 0 56px;
       }
 
-      /* OBSERVATION */
-      .obs {
+      /* INSIGHT */
+      .insight {
         padding: 100px 56px;
         display: grid;
-        grid-template-columns: 200px 1fr 280px;
+        grid-template-columns: 1fr 280px;
         gap: 64px;
         align-items: start;
       }
-      .obs-lbl {
-        font-size: 14px;
-        font-weight: 500;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: var(--sage);
-        padding-top: 5px;
-        position: sticky;
-        top: 100px;
+      .insight-block {
+        padding: 56px 0;
       }
-      .obs-body p {
+      .insight-block:first-child {
+        padding-top: 0;
+      }
+      .insight-block:last-child {
+        padding-bottom: 0;
+      }
+      .insight-hr {
+        border: none;
+        border-top: 1px solid var(--border);
+        margin: 0;
+      }
+      .insight-above {
+        font-family: var(--body);
+        font-size: 14px;
+        font-weight: 400;
+        color: var(--mid);
+        line-height: 1.6;
+        margin-top: 16px;
+      }
+      .insight-hd {
+        font-family: var(--display);
+        font-size: clamp(26px, 3.2vw, 36px);
+        font-weight: 400;
+        line-height: 1.25;
+        color: var(--ink);
+        margin: 12px 0 16px;
+        letter-spacing: -0.01em;
+      }
+      .insight-sub {
+        font-family: var(--body);
         font-size: 17px;
         font-weight: 300;
-        color: #4e4b48;
-        line-height: 1.9;
-        margin-bottom: 28px;
-      }
-      .obs-body p:last-child {
-        margin-bottom: 0;
-      }
-      .obs-body strong {
-        font-weight: 500;
-        color: var(--ink);
+        color: var(--mid);
+        line-height: 1.7;
       }
       .obs-photo-col {
         position: sticky;
@@ -959,7 +973,7 @@
           padding: 16px 24px;
         }
         .hero,
-        .obs,
+        .insight,
         .work,
         .svcs,
         .proc,
@@ -988,12 +1002,15 @@
         .hero-right-wrap {
           align-items: flex-start;
         }
-        .obs {
+        .insight {
           grid-template-columns: 1fr;
           gap: 28px;
         }
-        .obs-lbl {
-          position: static;
+        .insight-block {
+          padding: 40px 0;
+        }
+        .insight-hd {
+          font-size: 24px;
         }
         .obs-photo-col {
           position: static;
@@ -1084,8 +1101,8 @@
       <h1>Sales don't improve<br />until the store <em>does.</em></h1>
       <div class="hero-bot">
         <p class="hero-sub">
-          Shopify setup, redesign, and SEO for Indian D2C brands that are
-          already putting in effort — and want their store to finally match it.
+          Shopify and ecommerce website setup, redesign, and SEO for Indian D2C brands that are
+          already putting in effort and want their store to finally match it.
         </p>
         <div class="hero-right-wrap">
           <a href="#contact" class="btn">
@@ -1108,48 +1125,38 @@
 
     <hr class="div" />
 
-    <!-- OBSERVATION -->
-    <section class="obs">
-      <p class="obs-lbl reveal">What's actually happening</p>
-      <div class="obs-body">
-        <p class="reveal rd1">
-          Indian D2C has quietly matured. A few years ago, having a website at
-          all gave you an edge. Customers were impressed just by the fact that
-          you had one. That's no longer true. The bar has moved — and most
-          stores haven't moved with it.
-        </p>
-        <p class="reveal rd2">
-          Today's buyer doesn't need to be convinced to shop online. They
-          already do it constantly. What they're doing when they land on your
-          store is something different: they're
-          <strong>checking if you're worth trusting.</strong> They scroll, they
-          read, they look at product pages, and they notice whether things feel
-          polished or hurried. A decision gets made in seconds — without them
-          telling you anything.
-        </p>
-        <p class="reveal rd3">
-          The result is that founders are putting genuine effort in — running
-          ads, staying consistent on Instagram, responding to every DM — and the
-          results still don't match. The store looks fine on the surface. But
-          somewhere in the flow, something is quietly working against the sale.
-          A product page that doesn't answer the right questions. A checkout
-          that creates small hesitations. Trust signals in the wrong place, or
-          missing entirely.
-        </p>
-        <p class="reveal rd4">
-          <strong>This isn't a marketing problem.</strong> It's a clarity
-          problem. And fixing it doesn't require more traffic — it requires a
-          store that does its job properly when the right person arrives.
-        </p>
+    <!-- INSIGHT -->
+    <section class="insight">
+      <div class="insight-blocks">
+        <div class="insight-block reveal">
+          <p class="lbl">Reality check</p>
+          <p class="insight-above">What most founders don't realise</p>
+          <h2 class="insight-hd">Looking "fine" is no longer enough to win trust or sales.</h2>
+          <p class="insight-sub">In Indian D2C today, acceptable stores quietly lose to clearer ones.</p>
+        </div>
+        <hr class="insight-hr" />
+        <div class="insight-block reveal rd1">
+          <p class="lbl">Why effort isn't working</p>
+          <p class="insight-above">Why results don't match the work</p>
+          <h2 class="insight-hd">Effort outside the website can't fix confusion inside it.</h2>
+          <p class="insight-sub">Ads and Instagram bring people in — the store decides whether they buy.</p>
+        </div>
+        <hr class="insight-hr" />
+        <div class="insight-block reveal rd2">
+          <p class="lbl">The urgency trigger</p>
+          <p class="insight-above">Why this stalls growth</p>
+          <h2 class="insight-hd">A store that doesn't support your current stage will cap your growth.</h2>
+          <p class="insight-sub">What worked early often becomes the reason scale feels hard.</p>
+        </div>
       </div>
       <div class="obs-photo-col reveal rd2">
         <div class="obs-photo" id="photoWrap">
           <picture>
-            <source media="(max-width: 960px)" srcset="assets/images/profile.png" />
-            <img
-              src="assets/images/kavya.jpeg"
-              alt="Kavya Bhatnagar"
+            <source
+              media="(max-width: 960px)"
+              srcset="assets/images/profile.png"
             />
+            <img src="assets/images/kavya.jpeg" alt="Kavya Bhatnagar" />
           </picture>
         </div>
         <p class="obs-photo-caption">
@@ -1181,7 +1188,19 @@
       </div>
       <div class="work-grid">
         <div class="wi reveal">
-          <img src="assets/images/bag-website-design.png" alt="Luxury Leather Handbag — Shopify Store" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;display:block" />
+          <img
+            src="assets/images/luxury-handbag.png"
+            alt="Luxury Leather Handbag — Shopify Store"
+            style="
+              position: absolute;
+              inset: 0;
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              object-position: top;
+              display: block;
+            "
+          />
           <div class="wi-cap">
             <p class="wi-cap-t">Luxury Leather Handbag Brand</p>
             <p class="wi-cap-s">
@@ -1191,7 +1210,19 @@
           </div>
         </div>
         <div class="wi reveal rd1">
-          <img src="assets/images/fashion-products.webp" alt="Beauty Ecommerce Mobile App" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;display:block" />
+          <img
+            src="assets/images/fashion-products.webp"
+            alt="Beauty Ecommerce Mobile App"
+            style="
+              position: absolute;
+              inset: 0;
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              object-position: top;
+              display: block;
+            "
+          />
           <div class="wi-cap">
             <p class="wi-cap-t">Beauty Ecommerce App</p>
             <p class="wi-cap-s">
@@ -1201,7 +1232,19 @@
           </div>
         </div>
         <div class="wi reveal rd2">
-          <img src="assets/images/cake-website-design.webp" alt="Bakery Ecommerce Website" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;display:block" />
+          <img
+            src="assets/images/cake-website-design.webp"
+            alt="Bakery Ecommerce Website"
+            style="
+              position: absolute;
+              inset: 0;
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              object-position: top;
+              display: block;
+            "
+          />
           <div class="wi-cap">
             <p class="wi-cap-t">Artisan Bakery</p>
             <p class="wi-cap-s">
@@ -1211,7 +1254,19 @@
           </div>
         </div>
         <div class="wi reveal rd1">
-          <img src="assets/images/jewellery.webp" alt="Jewellery Landing Page" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;display:block" />
+          <img
+            src="assets/images/jewellery.webp"
+            alt="Jewellery Landing Page"
+            style="
+              position: absolute;
+              inset: 0;
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              object-position: top;
+              display: block;
+            "
+          />
           <div class="wi-cap">
             <p class="wi-cap-t">Jewellery Brand</p>
             <p class="wi-cap-s">
@@ -1643,8 +1698,8 @@
           el.addEventListener("mouseleave", () => cur.classList.remove("on"))
         })
         ;(function loop() {
-          cx += (mx - cx) * 0.16
-          cy += (my - cy) * 0.16
+          cx += (mx - cx) * 0.08
+          cy += (my - cy) * 0.08
           cur.style.left = cx + "px"
           cur.style.top = cy + "px"
           requestAnimationFrame(loop)

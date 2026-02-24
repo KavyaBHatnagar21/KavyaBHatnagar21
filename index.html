@@ -151,6 +151,43 @@
         border-color: var(--sage) !important;
       }
 
+      /* HAMBURGER MENU */
+      .menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+        width: 24px;
+        height: 18px;
+        position: relative;
+        z-index: 101;
+      }
+      .menu-btn span {
+        display: block;
+        width: 100%;
+        height: 1.5px;
+        background: var(--ink);
+        position: absolute;
+        left: 0;
+        transition: transform 0.35s ease, top 0.35s ease;
+      }
+      .menu-btn span:first-child { top: 4px; }
+      .menu-btn span:last-child { top: 14px; }
+      .menu-open .menu-btn span:first-child {
+        top: 9px;
+        transform: rotate(45deg);
+      }
+      .menu-open .menu-btn span:last-child {
+        top: 9px;
+        transform: rotate(-45deg);
+      }
+      .menu-overlay {
+        display: none;
+      }
+      .menu-open {
+        overflow: hidden;
+      }
+
       /* HERO */
       .hero {
         min-height: 100vh;
@@ -286,7 +323,7 @@
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        font-size: 14px;
+        font-size: 16px;
         font-weight: 400;
         color: var(--mid);
         text-decoration: none;
@@ -296,7 +333,7 @@
           gap 0.2s;
       }
       .btn-ghost:hover {
-        color: var(--ink);
+        color: var(--sage);
         gap: 12px;
       }
 
@@ -310,12 +347,25 @@
       .insight {
         padding: 100px 56px;
         display: grid;
-        grid-template-columns: 1fr 280px;
+        grid-template-columns: 1fr 1fr;
         gap: 64px;
         align-items: start;
       }
+      .insight-title {
+        font-family: var(--display);
+        font-size: clamp(30px, 4vw, 48px);
+        font-weight: 400;
+        line-height: 1.1;
+        letter-spacing: -0.01em;
+        position: sticky;
+        top: 100px;
+      }
+      .insight-title em {
+        font-style: italic;
+        color: var(--sage);
+      }
       .insight-block {
-        padding: 56px 0;
+        padding: 28px 0;
       }
       .insight-block:first-child {
         padding-top: 0;
@@ -330,67 +380,26 @@
       }
       .insight-above {
         font-family: var(--body);
-        font-size: 14px;
+        font-size: 16px;
         font-weight: 400;
         color: var(--mid);
-        line-height: 1.6;
-        margin-top: 16px;
+        line-height: 1.5;
       }
       .insight-hd {
         font-family: var(--display);
-        font-size: clamp(26px, 3.2vw, 36px);
+        font-size: clamp(20px, 2.2vw, 26px);
         font-weight: 400;
-        line-height: 1.25;
+        line-height: 1.3;
         color: var(--ink);
-        margin: 12px 0 16px;
+        margin: 8px 0 10px;
         letter-spacing: -0.01em;
       }
       .insight-sub {
         font-family: var(--body);
-        font-size: 17px;
+        font-size: 16px;
         font-weight: 300;
         color: var(--mid);
         line-height: 1.7;
-      }
-      .obs-photo-col {
-        position: sticky;
-        top: 100px;
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-      }
-      .obs-photo {
-        width: 100%;
-        aspect-ratio: 3/4;
-        background: var(--paper-warm);
-        overflow: hidden;
-        position: relative;
-      }
-      .obs-photo img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center top;
-        display: block;
-        filter: grayscale(15%);
-        transition:
-          filter 0.4s,
-          transform 0.5s;
-      }
-      .obs-photo:hover img {
-        filter: grayscale(0%);
-        transform: scale(1.03);
-      }
-      .obs-photo-caption {
-        font-size: 12px;
-        font-weight: 400;
-        color: var(--mid);
-        line-height: 1.6;
-      }
-      .obs-photo-caption strong {
-        font-weight: 500;
-        color: var(--ink);
-        display: block;
       }
 
       /* WORK */
@@ -452,7 +461,7 @@
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
-        background: linear-gradient(transparent 40%, rgba(15, 15, 14, 0.58));
+        background: linear-gradient(transparent 20%, rgba(15, 15, 14, 0.85));
         opacity: 0;
         transform: translateY(6px);
         transition:
@@ -464,13 +473,13 @@
         transform: none;
       }
       .wi-cap-t {
-        font-size: 14px;
+        font-size: 26px;
         font-weight: 500;
         color: #fff;
         margin-bottom: 4px;
       }
       .wi-cap-s {
-        font-size: 12px;
+        font-size: 18px;
         font-weight: 300;
         color: rgba(255, 255, 255, 0.7);
         line-height: 1.5;
@@ -481,86 +490,109 @@
         padding: 100px 56px;
         background: var(--ink);
       }
-      .svcs-top {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 80px;
-        margin-bottom: 80px;
-        align-items: end;
-      }
-      .svcs-top h2 {
+      .svcs-title {
         font-family: var(--display);
-        font-size: clamp(30px, 4vw, 52px);
+        font-size: clamp(30px, 4vw, 48px);
         font-weight: 400;
         line-height: 1.1;
         letter-spacing: -0.01em;
         color: var(--paper);
+        margin-bottom: 56px;
       }
-      .svcs-top h2 em {
+      .svcs-title em {
         font-style: italic;
         color: var(--sage-muted);
       }
-      .svcs-top p {
-        font-size: 15px;
-        font-weight: 300;
-        color: #777;
-        line-height: 1.8;
+      .svcs-cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        background: #252523;
+        border: 1px solid #252523;
       }
-      .svcs-list {
+      .svc {
+        background: var(--ink);
+        padding: 40px 36px;
+        display: flex;
+        flex-direction: column;
+        transition: background 0.6s ease;
+      }
+      .svc:hover {
+        background: #1a1f24;
+      }
+      .svc-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        border: 1px solid #3a3a38;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--sage-muted);
+        margin-bottom: 32px;
+      }
+      .svc-lbl {
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #666;
+        margin-bottom: 12px;
+      }
+      .svc-name {
+        font-family: var(--display);
+        font-size: clamp(20px, 2vw, 26px);
+        font-weight: 400;
+        line-height: 1.2;
+        color: var(--paper);
+        margin-bottom: 20px;
+      }
+      .svc-desc {
+        font-size: 16px;
+        font-weight: 300;
+        color: #999;
+        line-height: 1.75;
+        flex-grow: 1;
+      }
+      .svc-focus {
+        font-size: 14px;
+        font-weight: 500;
+        color: #666;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-top: 24px;
+        margin-bottom: 10px;
+      }
+      .svc-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .svc-list li {
+        font-size: 16px;
+        font-weight: 300;
+        color: #999;
+        line-height: 1.75;
+        padding-left: 16px;
+        position: relative;
+      }
+      .svc-list li::before {
+        content: "–";
+        position: absolute;
+        left: 0;
+        color: #555;
+      }
+      .svc-for {
+        font-size: 14px;
+        font-weight: 400;
+        color: #777;
+        line-height: 1.6;
+        margin-top: 24px;
+        padding-top: 20px;
         border-top: 1px solid #252523;
       }
-      .sr {
-        display: grid;
-        grid-template-columns: 52px 1fr 1fr auto;
-        gap: 40px;
-        align-items: start;
-        padding: 48px 0;
-        border-bottom: 1px solid #252523;
-        position: relative;
-        overflow: hidden;
-      }
-      .sr::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: #161614;
-        opacity: 0;
-        transition: opacity 0.25s;
-      }
-      .sr:hover::before {
-        opacity: 1;
-      }
-      .sr > * {
-        position: relative;
-        z-index: 1;
-      }
-      .sr-n {
-        font-family: var(--display);
-        font-style: italic;
-        font-size: 13px;
-        color: #3a3a38;
-        padding-top: 4px;
-      }
-      .sr-name {
-        font-family: var(--display);
-        font-size: 26px;
-        font-weight: 400;
-        color: var(--paper);
-        line-height: 1.2;
-      }
-      .sr-name em {
-        font-style: italic;
-        color: var(--sage-muted);
-      }
-      .sr-desc {
+      .svc-lnk {
         font-size: 14px;
-        font-weight: 300;
-        color: #666;
-        line-height: 1.75;
-        padding-top: 4px;
-      }
-      .sr-lnk {
-        font-size: 12px;
         font-weight: 500;
         letter-spacing: 0.08em;
         text-transform: uppercase;
@@ -569,13 +601,12 @@
         display: flex;
         align-items: center;
         gap: 6px;
-        padding-top: 4px;
-        white-space: nowrap;
+        margin-top: 24px;
         transition:
           color 0.2s,
           gap 0.2s;
       }
-      .sr-lnk:hover {
+      .svc-lnk:hover {
         color: var(--paper);
         gap: 10px;
       }
@@ -600,7 +631,7 @@
         color: var(--sage);
       }
       .proc-hd p {
-        font-size: 15px;
+        font-size: 16px;
         font-weight: 300;
         color: #777;
         line-height: 1.8;
@@ -624,19 +655,19 @@
         font-family: var(--display);
         font-style: italic;
         font-size: 48px;
-        color: var(--border);
+        color: var(--sage-muted);
         line-height: 1;
         margin-bottom: 20px;
       }
       .ps-t {
-        font-size: 15px;
+        font-size: 18px;
         font-weight: 500;
         color: var(--ink);
         margin-bottom: 10px;
         line-height: 1.3;
       }
       .ps-b {
-        font-size: 13px;
+        font-size: 16px;
         font-weight: 300;
         color: #888;
         line-height: 1.7;
@@ -760,7 +791,7 @@
         color: var(--sage);
       }
       .faq-l p {
-        font-size: 14px;
+        font-size: 16px;
         font-weight: 300;
         color: #888;
         line-height: 1.75;
@@ -779,7 +810,7 @@
         text-align: left;
         gap: 24px;
         font-family: var(--body);
-        font-size: 15px;
+        font-size: 16px;
         font-weight: 500;
         color: var(--ink);
         line-height: 1.4;
@@ -809,7 +840,7 @@
         max-height: 400px;
       }
       .fa p {
-        font-size: 14px;
+        font-size: 15px;
         font-weight: 300;
         color: #777;
         line-height: 1.85;
@@ -837,8 +868,11 @@
         font-style: italic;
         color: var(--sage-muted);
       }
+      .cta .btn {
+        border: 1px solid var(--sage);
+      }
       .cta-r p {
-        font-size: 15px;
+        font-size: 16px;
         font-weight: 300;
         color: #777;
         line-height: 1.8;
@@ -854,7 +888,7 @@
         display: flex;
         align-items: center;
         gap: 12px;
-        font-size: 14px;
+        font-size: 16px;
         font-weight: 300;
         color: #666;
         text-decoration: none;
@@ -863,6 +897,31 @@
         border-top: 1px solid #252523;
         padding: 16px 0;
       }
+      .cta-c-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border-top: 1px solid #252523;
+        padding: 16px 0;
+      }
+      .cta-c-row .cta-c {
+        border-top: none;
+        padding: 0;
+      }
+      .copy-btn {
+        background: none;
+        border: none;
+        color: #666;
+        padding: 0;
+        cursor: pointer;
+        transition: color 0.3s;
+        display: flex;
+        align-items: center;
+      }
+      .copy-btn:hover {
+        color: var(--sage);
+      }
+      .cta-c-row:first-child .cta-c,
       .cta-c:first-child {
         border-top: none;
         padding-top: 0;
@@ -894,7 +953,7 @@
       .fc {
         font-size: 12px;
         font-weight: 300;
-        color: var(--light);
+        color: var(--mid);
       }
       .flinks {
         display: flex;
@@ -966,17 +1025,129 @@
         margin-bottom: 20px;
       }
 
+      /* ABOUT */
+      .about {
+        padding: 100px 56px;
+        display: grid;
+        grid-template-columns: 400px 1fr;
+        gap: 0 8rem;
+        align-items: start;
+      }
+      .about-hd {
+        grid-column: 2;
+        grid-row: 1;
+        margin-bottom: 8px;
+      }
+      .about-left {
+        grid-column: 1;
+        grid-row: 1 / 3;
+      }
+      .about-body {
+        grid-column: 2;
+        grid-row: 2;
+      }
+      .about-photo {
+        border-radius: 6px;
+        overflow: hidden;
+        aspect-ratio: 3/4;
+      }
+      .about-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .about-caption {
+        margin-top: 20px;
+        font-size: 14px;
+        font-weight: 300;
+        color: var(--mid);
+        line-height: 1.6;
+      }
+      .about-caption strong {
+        display: block;
+        color: var(--ink);
+        font-weight: 600;
+        font-size: 16px;
+        margin-bottom: 4px;
+      }
+      .about-hd h2 {
+        font-family: var(--display);
+        font-size: clamp(26px, 3vw, 40px);
+        font-weight: 400;
+        line-height: 1.1;
+        letter-spacing: -0.01em;
+      }
+      .about-hd h2 em {
+        font-style: italic;
+        color: var(--sage);
+      }
+      .about-body p {
+        font-size: 16px;
+        font-weight: 300;
+        color: #666666;
+        line-height: 1.8;
+        margin-top: 18px;
+      }
+
       /* RESPONSIVE */
       @media (max-width: 960px) {
         nav,
         nav.sc {
           padding: 16px 24px;
         }
+        .menu-btn {
+          display: block;
+        }
+        .nr {
+          display: none;
+        }
+        .menu-overlay {
+          display: block;
+          position: fixed;
+          inset: 0;
+          z-index: 99;
+          background: rgba(245, 243, 239, 0.97);
+          backdrop-filter: blur(20px);
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity 0.4s ease;
+        }
+        .menu-open .menu-overlay {
+          opacity: 1;
+          pointer-events: auto;
+        }
+        .menu-links {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          height: 100%;
+          gap: 36px;
+        }
+        .menu-links a {
+          font-family: var(--display);
+          font-size: 32px;
+          font-weight: 400;
+          color: var(--ink);
+          text-decoration: none;
+          opacity: 0;
+          transform: translateY(20px);
+          transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+        .menu-open .menu-links a {
+          opacity: 1;
+          transform: none;
+        }
+        .menu-open .menu-links a:nth-child(1) { transition-delay: 0.1s; }
+        .menu-open .menu-links a:nth-child(2) { transition-delay: 0.15s; }
+        .menu-open .menu-links a:nth-child(3) { transition-delay: 0.2s; }
+        .menu-open .menu-links a:nth-child(4) { transition-delay: 0.25s; }
         .hero,
         .insight,
         .work,
         .svcs,
         .proc,
+        .about,
         .testi,
         .faq,
         .cta,
@@ -1006,23 +1177,20 @@
           grid-template-columns: 1fr;
           gap: 28px;
         }
+        .insight-title {
+          position: static;
+        }
         .insight-block {
-          padding: 40px 0;
+          padding: 24px 0;
         }
         .insight-hd {
-          font-size: 24px;
+          font-size: 20px;
         }
-        .obs-photo-col {
-          position: static;
-          flex-direction: row;
-          align-items: center;
-          gap: 20px;
-        }
-        .obs-photo {
-          width: 100px;
-          aspect-ratio: 1/1;
-          flex-shrink: 0;
-          border-radius: 50%;
+        .work-hd h2,
+        .proc-hd h2,
+        .about-hd h2,
+        .testi-hd h2 {
+          line-height: 1.3;
         }
         .work-grid {
           grid-template-columns: 1fr;
@@ -1030,32 +1198,43 @@
         .wi:first-child {
           aspect-ratio: 4/3;
         }
-        .svcs-top {
+        .wi-cap {
+          background: linear-gradient(
+            rgba(15, 15, 14, 0.3),
+            rgba(15, 15, 14, 0.92)
+          );
+        }
+        .svcs-cards {
           grid-template-columns: 1fr;
-          gap: 20px;
-        }
-        .sr {
-          grid-template-columns: 40px 1fr;
-          gap: 16px;
-        }
-        .sr-desc,
-        .sr-lnk {
-          display: none;
         }
         .proc-grid {
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: 1fr;
         }
-        .ps:nth-child(2) {
+        .ps {
           border-right: none;
-        }
-        .ps:nth-child(3) {
           border-top: 1px solid var(--border);
         }
-        .ps:last-child {
-          border-top: 1px solid var(--border);
+        .ps:first-child {
+          border-top: none;
         }
         .ps-arr {
           display: none;
+        }
+        .about {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .about-hd,
+        .about-left,
+        .about-body {
+          grid-column: 1;
+          grid-row: auto;
+        }
+        .about-left {
+          position: static;
+        }
+        .about-photo {
+          width: 100%;
         }
         .tg {
           grid-template-columns: 1fr;
@@ -1087,9 +1266,23 @@
       <div class="nr">
         <a href="#work">Work</a>
         <a href="#services">Services</a>
+        <a href="#about">About</a>
         <a href="#contact" class="nc">Let's talk</a>
       </div>
+      <button class="menu-btn" id="menuBtn" aria-label="Menu">
+        <span></span>
+        <span></span>
+      </button>
     </nav>
+
+    <div class="menu-overlay" id="menuOverlay">
+      <div class="menu-links">
+        <a href="#work">Work</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#contact">Let's talk</a>
+      </div>
+    </div>
 
     <!-- HERO -->
     <section class="hero">
@@ -1098,11 +1291,11 @@
         <span class="adot"></span>
         <span>Available for new projects</span>
       </div>
-      <h1>Sales don't improve<br />until the store <em>does.</em></h1>
+      <h1>Sales don't improve<br />until the store<em> does.</em></h1>
       <div class="hero-bot">
         <p class="hero-sub">
-          Shopify and ecommerce website setup, redesign, and SEO for Indian D2C brands that are
-          already putting in effort and want their store to finally match it.
+          Shopify and ecommerce website setup, redesign, and SEO for Indian D2C
+          brands seeing traffic, DMs, or orders, but not consistent conversion.
         </p>
         <div class="hero-right-wrap">
           <a href="#contact" class="btn">
@@ -1127,42 +1320,189 @@
 
     <!-- INSIGHT -->
     <section class="insight">
+      <h2 class="insight-title reveal">
+        When a store stops <br />
+        supporting<em> sales?</em>
+      </h2>
       <div class="insight-blocks">
         <div class="insight-block reveal">
-          <p class="lbl">Reality check</p>
+          <p class="lbl">The real issue</p>
           <p class="insight-above">What most founders don't realise</p>
-          <h2 class="insight-hd">Looking "fine" is no longer enough to win trust or sales.</h2>
-          <p class="insight-sub">In Indian D2C today, acceptable stores quietly lose to clearer ones.</p>
+          <h2 class="insight-hd">
+            Looking "fine" is no longer enough to win trust or sales.
+          </h2>
+          <p class="insight-sub">
+            Visitors come to check pricing, products, delivery timelines, and
+            trust. If this feels unclear, they leave quietly.
+          </p>
         </div>
         <hr class="insight-hr" />
         <div class="insight-block reveal rd1">
           <p class="lbl">Why effort isn't working</p>
-          <p class="insight-above">Why results don't match the work</p>
-          <h2 class="insight-hd">Effort outside the website can't fix confusion inside it.</h2>
-          <p class="insight-sub">Ads and Instagram bring people in — the store decides whether they buy.</p>
+          <p class="insight-above">Results don't match the work</p>
+          <h2 class="insight-hd">
+            Effort outside the website can't fix confusion inside it.
+          </h2>
+          <p class="insight-sub">
+            Ads and Instagram bring people in but the store decides whether they
+            buy or drop.
+          </p>
         </div>
         <hr class="insight-hr" />
         <div class="insight-block reveal rd2">
-          <p class="lbl">The urgency trigger</p>
-          <p class="insight-above">Why this stalls growth</p>
-          <h2 class="insight-hd">A store that doesn't support your current stage will cap your growth.</h2>
-          <p class="insight-sub">What worked early often becomes the reason scale feels hard.</p>
+          <p class="lbl">What I fix</p>
+          <p class="insight-above">
+            I do not decorate stores. I fix what affects buying decisions.
+          </p>
+          <h2 class="insight-hd">
+            Structure, product flow, and trust signals.
+          </h2>
+          <p class="insight-sub">
+            When someone lands on your store, they should quickly understand
+            what you sell, what it costs, why it matters, and how to buy
+            smoothly without confusion.
+          </p>
         </div>
       </div>
-      <div class="obs-photo-col reveal rd2">
-        <div class="obs-photo" id="photoWrap">
-          <picture>
-            <source
-              media="(max-width: 960px)"
-              srcset="assets/images/profile.png"
-            />
-            <img src="assets/images/kavya.jpeg" alt="Kavya Bhatnagar" />
-          </picture>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="svcs" id="services">
+      <p class="testi-ey reveal">How can I help you grow?</p>
+      <h2 class="svcs-title reveal">Here are my<br /><em> services</em></h2>
+      <div class="svcs-cards">
+        <div class="svc reveal">
+          <div class="svc-icon">
+            <svg
+              width="24"
+              height="24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              viewBox="0 0 24 24"
+            >
+              <rect x="2" y="3" width="20" height="14" rx="2" />
+              <path d="M8 21h8M12 17v4" />
+            </svg>
+          </div>
+          <h3 class="svc-name">High-Conversion Ecommerce Store Setup</h3>
+          <p class="svc-focus">Best when</p>
+          <ul class="svc-list">
+            <li>Orders come from Instagram or WhatsApp</li>
+            <li>Managing DMs and payments feels messy</li>
+            <li>You want a proper system before scaling</li>
+          </ul>
+          <p class="svc-focus">You get</p>
+          <ul class="svc-list">
+            <li>Clean, easy-to-use Shopify store</li>
+            <li>Clear product and category setup</li>
+            <li>Simple pricing and offers</li>
+            <li>Payments and shipping set up properly</li>
+            <li>Mobile-friendly buying experience</li>
+          </ul>
+          <a href="#contact" class="svc-lnk">
+            Start here
+            <svg
+              width="11"
+              height="11"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              viewBox="0 0 24 24"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
         </div>
-        <p class="obs-photo-caption">
-          <strong>Kavya Bhatnagar</strong>
-          Shopify & Ecommerce Designer<br />based in Bengaluru, India
-        </p>
+        <div class="svc reveal rd1">
+          <div class="svc-icon">
+            <svg
+              width="24"
+              height="24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              viewBox="0 0 24 24"
+            >
+              <path d="M12 20h9" />
+              <path
+                d="M16.5 3.5a2.121 2.121 0 1 1 3 3L7 19l-4 1 1-4L16.5 3.5z"
+              />
+            </svg>
+          </div>
+          <p class="svc-lbl">Most requested</p>
+          <h3 class="svc-name">Store Redesign for Growth</h3>
+          <p class="svc-focus">Best when</p>
+          <ul class="svc-list">
+            <li>Your store already exists</li>
+            <li>Traffic comes in but sales feel low</li>
+            <li>The store does not justify your pricing</li>
+          </ul>
+          <p class="svc-focus">You get</p>
+          <ul class="svc-list">
+            <li>Clear store structure that guides buyers</li>
+            <li>Better product pages and pricing clarity</li>
+            <li>Trust elements placed where buyers decide</li>
+            <li>Smoother flow from page to checkout</li>
+            <li>Improved mobile experience</li>
+          </ul>
+          <a href="#contact" class="svc-lnk">
+            Get a redesign
+            <svg
+              width="11"
+              height="11"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              viewBox="0 0 24 24"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+        <div class="svc reveal rd2">
+          <div class="svc-icon">
+            <svg
+              width="24"
+              height="24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              viewBox="0 0 24 24"
+            >
+              <circle cx="11" cy="11" r="8" />
+              <path d="M21 21l-4.35-4.35" />
+            </svg>
+          </div>
+          <h3 class="svc-name">SEO & Discoverability Foundation</h3>
+          <p class="svc-focus">Best when</p>
+          <ul class="svc-list">
+            <li>You want customers beyond Instagram</li>
+            <li>You want long-term visibility</li>
+            <li>You want more customers to discover your brand</li>
+          </ul>
+          <p class="svc-focus">You get</p>
+          <ul class="svc-list">
+            <li>SEO-ready site structure</li>
+            <li>Clean on-page setup</li>
+            <li>Pages built for real search intent</li>
+            <li>Basic tracking and analytics</li>
+            <li>A simple plan for what to do after setup</li>
+          </ul>
+          <a href="#contact" class="svc-lnk">
+            Build visibility
+            <svg
+              width="11"
+              height="11"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              viewBox="0 0 24 24"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
       </div>
     </section>
 
@@ -1172,7 +1512,12 @@
     <section class="work" id="work">
       <div class="work-hd reveal">
         <h2>Some things<br />I've <em>worked on.</em></h2>
-        <a href="#" class="btn-ghost">
+        <a
+          href="https://dribbble.com/kavya-ak_20"
+          class="btn-ghost"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           See all work
           <svg
             width="12"
@@ -1278,91 +1623,6 @@
       </div>
     </section>
 
-    <!-- SERVICES -->
-    <section class="svcs" id="services">
-      <div class="svcs-top">
-        <h2 class="reveal">Three ways<br />I can <em>help.</em></h2>
-        <p class="reveal rd2">
-          Most store problems trace back to one of three situations. You're
-          building from scratch and want it done properly. You have a store that
-          isn't converting despite real effort. Or your business is too
-          dependent on one channel and that needs to change.
-        </p>
-      </div>
-      <div class="svcs-list">
-        <div class="sr reveal">
-          <span class="sr-n">01</span>
-          <div class="sr-name">
-            Store Setup<br /><em>for Growing Brands</em>
-          </div>
-          <p class="sr-desc">
-            You're already selling — through Instagram, WhatsApp, or word of
-            mouth. The demand is real but the system is fragile. This builds you
-            a proper Shopify store that handles volume, looks credible, and
-            doesn't depend on DMs to function.
-          </p>
-          <a href="#contact" class="sr-lnk"
-            >Talk about this
-            <svg
-              width="11"
-              height="11"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.5"
-              viewBox="0 0 24 24"
-            >
-              <path d="M5 12h14M12 5l7 7-7 7" /></svg
-          ></a>
-        </div>
-        <div class="sr reveal rd1">
-          <span class="sr-n">02</span>
-          <div class="sr-name">Store Redesign<br /><em>for Conversion</em></div>
-          <p class="sr-desc">
-            Your store exists. Traffic comes. But something between arrival and
-            purchase is breaking. This isn't a cosmetic redesign — it's a
-            structural one. I look at how customers actually move through your
-            store, where they hesitate, where trust drops, and rebuild it so the
-            experience supports the sale.
-          </p>
-          <a href="#contact" class="sr-lnk"
-            >Talk about this
-            <svg
-              width="11"
-              height="11"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.5"
-              viewBox="0 0 24 24"
-            >
-              <path d="M5 12h14M12 5l7 7-7 7" /></svg
-          ></a>
-        </div>
-        <div class="sr reveal rd2">
-          <span class="sr-n">03</span>
-          <div class="sr-name">SEO &<br /><em>Discoverability</em></div>
-          <p class="sr-desc">
-            You want customers who find you, not just ones you reach out to.
-            This builds the discoverability foundation — site structure, on-page
-            optimisation, search-intent pages — so your website starts earning
-            attention instead of waiting for it. A foundation built properly, so
-            it has a real chance to work.
-          </p>
-          <a href="#contact" class="sr-lnk"
-            >Talk about this
-            <svg
-              width="11"
-              height="11"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.5"
-              viewBox="0 0 24 24"
-            >
-              <path d="M5 12h14M12 5l7 7-7 7" /></svg
-          ></a>
-        </div>
-      </div>
-    </section>
-
     <!-- PROCESS -->
     <section class="proc">
       <div class="proc-hd">
@@ -1445,6 +1705,53 @@
             actually runs — and is ready for what comes next.
           </p>
         </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+      <div class="about-hd">
+        <p class="lbl reveal">About</p>
+        <h2 class="reveal rd1">The person behind<br />the <em>work.</em></h2>
+      </div>
+      <div class="about-left reveal">
+        <div class="about-photo">
+          <img src="assets/images/kavya.jpeg" alt="Kavya Bhatnagar" />
+        </div>
+        <div class="about-caption">
+          <strong>Kavya Bhatnagar</strong>
+          Shopify & Ecommerce Designer<br />based in Bengaluru, India
+        </div>
+      </div>
+      <div class="about-body">
+        <p class="reveal rd2">
+          Hi, there! I'm Kavya, a Shopify & Ecommerce Website Designer. I work with
+          Indian D2C brands that are already selling and want their online store
+          to help their business grow.
+        </p>
+        <p class="reveal rd2">
+          My focus is not decoration or trends. It is clarity. How products are
+          presented, how trust is built, and how customers move through a store
+          before they decide to buy.
+        </p>
+        <p class="reveal rd2">
+          I spend a lot of time observing how Indian customers buy today. How
+          they check prices, how they judge trust, how quickly they decide, and
+          what makes them drop off without saying anything. That understanding
+          shapes how I build and redesign stores.
+        </p>
+
+        <p class="reveal rd2">
+          I work one-on-one, not through a large team. This keeps communication
+          clear and the work closely tied to the business, not a template.
+        </p>
+        <!-- <p class="reveal rd2">
+          If I feel I can help, I will say so clearly.<br />
+          If I feel the timing or fit is wrong, I will say that too.
+        </p>
+        <p class="reveal rd2">
+          This approach helps both sides make better decisions.
+        </p> -->
       </div>
     </section>
 
@@ -1608,17 +1915,20 @@
     <!-- CTA -->
     <section class="cta" id="contact">
       <h2 class="reveal">
-        If your store exists<br />but <em>isn't helping<br />much</em> —
-        that's<br />worth fixing.
+        If your store exists<br />but isn't helping<br />you grow, it's<br /><em
+          >worth fixing.</em
+        >
       </h2>
       <div class="cta-r reveal rd2">
         <p>
-          One conversation is enough to know whether I can help. No pitch, no
-          pressure — just a clear look at where things stand and what might
-          change.
+          One conversation is enough to know whether I can help. Just a clear
+          look at where things stand and what might change. You decide what to
+          do next.
         </p>
         <a
-          href="mailto:contact@heykavya.com"
+          href="https://wa.me/919187022234"
+          target="_blank"
+          rel="noopener noreferrer"
           class="btn"
           style="display: inline-flex"
         >
@@ -1635,22 +1945,65 @@
           </svg>
         </a>
         <div class="cta-contacts">
-          <a href="mailto:contact@heykavya.com" class="cta-c">
-            <svg
-              width="14"
-              height="14"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.5"
-              viewBox="0 0 24 24"
+          <span class="cta-c-row">
+            <a href="mailto:contact@heykavya.com" class="cta-c">
+              <svg
+                width="14"
+                height="14"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                />
+                <polyline points="22,6 12,13 2,6" />
+              </svg>
+              contact@heykavya.com
+            </a>
+            <button
+              class="copy-btn"
+              onclick="
+                navigator.clipboard
+                  .writeText('contact@heykavya.com')
+                  .then(() => {
+                    this.querySelector('.copy-icon').style.display = 'none'
+                    this.querySelector('.check-icon').style.display = 'block'
+                    setTimeout(() => {
+                      this.querySelector('.copy-icon').style.display = 'block'
+                      this.querySelector('.check-icon').style.display = 'none'
+                    }, 1500)
+                  })
+              "
+              aria-label="Copy email"
             >
-              <path
-                d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
-              />
-              <polyline points="22,6 12,13 2,6" />
-            </svg>
-            contact@heykavya.com
-          </a>
+              <svg
+                class="copy-icon"
+                width="14"
+                height="14"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                viewBox="0 0 24 24"
+              >
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+              </svg>
+              <svg
+                class="check-icon"
+                width="14"
+                height="14"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                viewBox="0 0 24 24"
+                style="display: none"
+              >
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            </button>
+          </span>
           <a href="tel:+919187022234" class="cta-c">
             <svg
               width="14"
@@ -1675,9 +2028,13 @@
       <a href="#" class="fl">Kavya Bhatnagar</a>
       <p class="fc">Designed & developed by Kavya Bhatnagar · ©2026</p>
       <div class="flinks">
-        <a href="#" target="_blank">Dribbble</a>
-        <a href="#" target="_blank">Behance</a>
-        <a href="#" target="_blank">Pinterest</a>
+        <a href="https://dribbble.com/kavya-ak_20" target="_blank">Dribbble</a>
+        <a href="https://www.behance.net/kavyabhatnagar-ak_20" target="_blank"
+          >Behance</a
+        >
+        <a href="https://in.pinterest.com/brown_horizon/" target="_blank"
+          >Pinterest</a
+        >
       </div>
     </footer>
 
@@ -1698,8 +2055,8 @@
           el.addEventListener("mouseleave", () => cur.classList.remove("on"))
         })
         ;(function loop() {
-          cx += (mx - cx) * 0.08
-          cy += (my - cy) * 0.08
+          cx += (mx - cx) * 0.1
+          cy += (my - cy) * 0.1
           cur.style.left = cx + "px"
           cur.style.top = cy + "px"
           requestAnimationFrame(loop)
@@ -1707,6 +2064,18 @@
       }
 
       // Nav
+      // MOBILE MENU
+      const menuBtn = document.getElementById("menuBtn")
+      const menuOverlay = document.getElementById("menuOverlay")
+      menuBtn.addEventListener("click", () => {
+        document.body.classList.toggle("menu-open")
+      })
+      menuOverlay.querySelectorAll("a").forEach((a) => {
+        a.addEventListener("click", () => {
+          document.body.classList.remove("menu-open")
+        })
+      })
+
       const nav = document.getElementById("nav")
       window.addEventListener(
         "scroll",

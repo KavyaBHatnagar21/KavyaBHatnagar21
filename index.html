@@ -169,10 +169,16 @@
         background: var(--ink);
         position: absolute;
         left: 0;
-        transition: transform 0.35s ease, top 0.35s ease;
+        transition:
+          transform 0.35s ease,
+          top 0.35s ease;
       }
-      .menu-btn span:first-child { top: 4px; }
-      .menu-btn span:last-child { top: 14px; }
+      .menu-btn span:first-child {
+        top: 4px;
+      }
+      .menu-btn span:last-child {
+        top: 14px;
+      }
       .menu-open .menu-btn span:first-child {
         top: 9px;
         transform: rotate(45deg);
@@ -193,11 +199,19 @@
         min-height: 100vh;
         padding: 0 56px 80px;
         display: flex;
-        flex-direction: column;
-        justify-content: center;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 40px;
         position: relative;
         overflow: hidden;
         padding-top: 6rem;
+      }
+      .hero-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
       }
       .hero-vert {
         position: absolute;
@@ -269,7 +283,7 @@
       }
       .hero-sub {
         max-width: 360px;
-        font-size: 18px;
+        font-size: 16px;
         font-weight: 300;
         color: #666;
         line-height: 1.8;
@@ -277,6 +291,9 @@
         animation: fu 0.7s 0.6s forwards;
       }
       .hero-right-wrap {
+        position: absolute;
+        bottom: 80px;
+        right: 56px;
         display: flex;
         flex-direction: column;
         align-items: flex-end;
@@ -290,6 +307,17 @@
         letter-spacing: 0.1em;
         text-transform: uppercase;
         color: var(--mid);
+      }
+      .hero-illus {
+        width: clamp(280px, 35vw, 520px);
+        max-width: 520px;
+        flex-shrink: 0;
+        padding: 0 3rem 0 0;
+        pointer-events: none;
+      }
+      .hero-illus img {
+        width: 100%;
+        height: auto;
       }
 
       /* BUTTONS */
@@ -351,18 +379,30 @@
         gap: 64px;
         align-items: start;
       }
+      .insight-left {
+        position: sticky;
+        top: 100px;
+      }
       .insight-title {
         font-family: var(--display);
         font-size: clamp(30px, 4vw, 48px);
         font-weight: 400;
         line-height: 1.1;
         letter-spacing: -0.01em;
-        position: sticky;
-        top: 100px;
       }
       .insight-title em {
         font-style: italic;
         color: var(--sage);
+      }
+      .insight-illus {
+        margin-top: 5rem;
+        width: 80%;
+        max-width: 500px;
+        pointer-events: none;
+      }
+      .insight-illus img {
+        width: 100%;
+        height: auto;
       }
       .insight-block {
         padding: 28px 0;
@@ -613,10 +653,24 @@
 
       /* PROCESS */
       .proc {
-        padding: 100px 56px;
+        padding: 10px 56px;
       }
       .proc-hd {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 80px;
         margin-bottom: 72px;
+      }
+      .proc-illus {
+        width: clamp(300px, 35vw, 500px);
+        max-width: 500px;
+        flex-shrink: 0;
+        pointer-events: none;
+      }
+      .proc-illus img {
+        width: 100%;
+        height: auto;
       }
       .proc-hd h2 {
         font-family: var(--display);
@@ -744,6 +798,16 @@
         color: var(--sage-muted);
         font-style: italic;
       }
+      .tc-stars {
+        display: flex;
+        gap: 3px;
+        margin: 16px 0 20px;
+      }
+      .tc-stars svg {
+        width: 14px;
+        height: 14px;
+        fill: #e2b93b;
+      }
       .tc-body {
         font-family: var(--display);
         font-style: italic;
@@ -770,13 +834,23 @@
       }
       .faq-in {
         display: grid;
-        grid-template-columns: 280px 1fr;
+        grid-template-columns: 1fr 2fr;
         gap: 80px;
         align-items: start;
       }
       .faq-l {
         position: sticky;
         top: 100px;
+      }
+      .faq-illus {
+        width: 60%;
+        max-width: 250px;
+        pointer-events: none;
+        margin-top: 32px;
+      }
+      .faq-illus img {
+        width: 100%;
+        height: auto;
       }
       .faq-l h2 {
         font-family: var(--display);
@@ -796,6 +870,7 @@
         color: #888;
         line-height: 1.75;
       }
+
       .fi {
         border-bottom: 1px solid var(--border);
       }
@@ -982,6 +1057,11 @@
         opacity: 1;
         transform: none;
       }
+      .reveal-fade {
+        transform: none;
+        transition: opacity 1s ease;
+        transition-delay: 0.4s;
+      }
       .rd1 {
         transition-delay: 0.1s;
       }
@@ -1041,6 +1121,8 @@
       .about-left {
         grid-column: 1;
         grid-row: 1 / 3;
+        position: sticky;
+        top: 100px;
       }
       .about-body {
         grid-column: 2;
@@ -1132,16 +1214,26 @@
           text-decoration: none;
           opacity: 0;
           transform: translateY(20px);
-          transition: opacity 0.4s ease, transform 0.4s ease;
+          transition:
+            opacity 0.4s ease,
+            transform 0.4s ease;
         }
         .menu-open .menu-links a {
           opacity: 1;
           transform: none;
         }
-        .menu-open .menu-links a:nth-child(1) { transition-delay: 0.1s; }
-        .menu-open .menu-links a:nth-child(2) { transition-delay: 0.15s; }
-        .menu-open .menu-links a:nth-child(3) { transition-delay: 0.2s; }
-        .menu-open .menu-links a:nth-child(4) { transition-delay: 0.25s; }
+        .menu-open .menu-links a:nth-child(1) {
+          transition-delay: 0.1s;
+        }
+        .menu-open .menu-links a:nth-child(2) {
+          transition-delay: 0.15s;
+        }
+        .menu-open .menu-links a:nth-child(3) {
+          transition-delay: 0.2s;
+        }
+        .menu-open .menu-links a:nth-child(4) {
+          transition-delay: 0.25s;
+        }
         .hero,
         .insight,
         .work,
@@ -1160,10 +1252,19 @@
           margin: 0;
         }
         .hero {
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: center;
           padding-bottom: 60px;
         }
         .hero-vert {
           display: none;
+        }
+        .hero-illus {
+          width: 100%;
+          max-width: none;
+          padding: 0;
+          margin: 32px 0 0;
         }
         .hero-bot {
           flex-direction: column;
@@ -1171,14 +1272,19 @@
           gap: 28px;
         }
         .hero-right-wrap {
+          position: static;
           align-items: flex-start;
         }
         .insight {
           grid-template-columns: 1fr;
-          gap: 28px;
+          gap: 70px;
         }
-        .insight-title {
+        .insight-left {
           position: static;
+        }
+        .insight-illus {
+          width: 100%;
+          margin: 50px 0 0;
         }
         .insight-block {
           padding: 24px 0;
@@ -1206,6 +1312,16 @@
         }
         .svcs-cards {
           grid-template-columns: 1fr;
+        }
+        .proc-hd {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0;
+          margin-bottom: 32px;
+        }
+        .proc-illus {
+          width: 100%;
+          margin: 24px 0 0;
         }
         .proc-grid {
           grid-template-columns: 1fr;
@@ -1245,6 +1361,11 @@
         }
         .faq-l {
           position: static;
+        }
+        .faq-illus {
+          width: 100%;
+          display: block;
+          margin: 40px auto 0px 30px;
         }
         .cta {
           grid-template-columns: 1fr;
@@ -1286,33 +1407,38 @@
 
     <!-- HERO -->
     <section class="hero">
-      <span class="hero-vert">Shopify · Ecommerce · SEO · India</span>
-      <div class="hero-badge">
-        <span class="adot"></span>
-        <span>Available for new projects</span>
-      </div>
-      <h1>Sales don't improve<br />until the store<em> does.</em></h1>
-      <div class="hero-bot">
-        <p class="hero-sub">
-          Shopify and ecommerce website setup, redesign, and SEO for Indian D2C
-          brands seeing traffic, DMs, or orders, but not consistent conversion.
-        </p>
-        <div class="hero-right-wrap">
-          <a href="#contact" class="btn">
-            Start a conversation
-            <svg
-              width="14"
-              height="14"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.5"
-              viewBox="0 0 24 24"
-            >
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
-          </a>
-          <span class="hero-scroll">Scroll to explore</span>
+      <div class="hero-content">
+        <span class="hero-vert">Shopify · Ecommerce · SEO · India</span>
+        <div class="hero-badge">
+          <span class="adot"></span>
+          <span>Available for new projects</span>
         </div>
+        <h1>Sales don't improve<br />until the store<em> does.</em></h1>
+        <div class="hero-bot">
+          <p class="hero-sub">
+            Shopify and ecommerce website setup, redesign, and SEO for Indian D2C
+            brands seeing traffic, DMs, or orders, but not consistent conversion.
+          </p>
+        </div>
+      </div>
+      <div class="hero-right-wrap">
+        <a href="#contact" class="btn">
+          Start a conversation
+          <svg
+            width="14"
+            height="14"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            viewBox="0 0 24 24"
+          >
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </a>
+        <span class="hero-scroll">Scroll to explore</span>
+      </div>
+      <div class="hero-illus reveal reveal-fade">
+        <img src="assets/images/hero_compressed.png" alt="Storefront illustration" />
       </div>
     </section>
 
@@ -1320,20 +1446,23 @@
 
     <!-- INSIGHT -->
     <section class="insight">
-      <h2 class="insight-title reveal">
-        When a store stops <br />
-        supporting<em> sales?</em>
-      </h2>
+      <div class="insight-left">
+        <h2 class="insight-title reveal">
+          When a store stops <br />
+          supporting<em> sales?</em>
+        </h2>
+        <div class="insight-illus reveal reveal-fade">
+          <img src="assets/images/Insight_compressed.png" alt="Insight illustration" />
+        </div>
+      </div>
       <div class="insight-blocks">
         <div class="insight-block reveal">
           <p class="lbl">The real issue</p>
           <p class="insight-above">What most founders don't realise</p>
-          <h2 class="insight-hd">
-            Looking "fine" is no longer enough to win trust or sales.
-          </h2>
+          <h2 class="insight-hd">Looking “fine” is not enough anymore.</h2>
           <p class="insight-sub">
-            Visitors come to check pricing, products, delivery timelines, and
-            trust. If this feels unclear, they leave quietly.
+            Customers visit to check price, product, delivery, and trust. If
+            this is not clear, they leave quietly.
           </p>
         </div>
         <hr class="insight-hr" />
@@ -1359,8 +1488,8 @@
           </h2>
           <p class="insight-sub">
             When someone lands on your store, they should quickly understand
-            what you sell, what it costs, why it matters, and how to buy
-            smoothly without confusion.
+            what you sell, what it costs, why it's worth buying, and how to buy
+            without any confusion.
           </p>
         </div>
       </div>
@@ -1626,13 +1755,18 @@
     <!-- PROCESS -->
     <section class="proc">
       <div class="proc-hd">
-        <p class="lbl reveal">How I work</p>
-        <h2 class="reveal rd1">I don't start<br />with <em>design.</em></h2>
-        <p class="reveal rd2">
-          Design is the last step. Before anything gets built, I need to
-          understand your business, your customers, and where the current
-          experience is losing people.
-        </p>
+        <div>
+          <p class="lbl reveal">How I work</p>
+          <h2 class="reveal rd1">I don't start<br />with <em>design.</em></h2>
+          <p class="reveal rd2">
+            Design is the last step. Before anything gets built, I need to
+            understand your business, your customers, and where the current
+            experience is losing people.
+          </p>
+        </div>
+        <div class="proc-illus reveal reveal-fade">
+          <img src="assets/images/process_compressed.png" alt="Process illustration" />
+        </div>
       </div>
       <div class="proc-grid">
         <div class="ps reveal">
@@ -1725,9 +1859,9 @@
       </div>
       <div class="about-body">
         <p class="reveal rd2">
-          Hi, there! I'm Kavya, a Shopify & Ecommerce Website Designer. I work with
-          Indian D2C brands that are already selling and want their online store
-          to help their business grow.
+          Hi, there! I'm Kavya, a Shopify & Ecommerce Website Designer. I work
+          with Indian D2C brands that are already selling and want their online
+          store to help their business grow.
         </p>
         <p class="reveal rd2">
           My focus is not decoration or trends. It is clarity. How products are
@@ -1735,10 +1869,9 @@
           before they decide to buy.
         </p>
         <p class="reveal rd2">
-          I spend a lot of time observing how Indian customers buy today. How
-          they check prices, how they judge trust, how quickly they decide, and
-          what makes them drop off without saying anything. That understanding
-          shapes how I build and redesign stores.
+          I spend time observing how Indian customers shop today. What they
+          check, what they skip, and where they hesitate. That understanding
+          guides how I build and redesign stores.
         </p>
 
         <p class="reveal rd2">
@@ -1767,6 +1900,33 @@
         <div class="tc reveal rd1">
           <div>
             <div class="tc-mk">"</div>
+            <div class="tc-stars">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14 2 9.27l6.91-1.01z"
+                />
+              </svg>
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14 2 9.27l6.91-1.01z"
+                />
+              </svg>
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14 2 9.27l6.91-1.01z"
+                />
+              </svg>
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14 2 9.27l6.91-1.01z"
+                />
+              </svg>
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14 2 9.27l6.91-1.01z"
+                />
+              </svg>
+            </div>
             <p class="tc-body">
               Clean, modern design with a real focus on user experience. Our
               customers love the new site — and our sales show it.
@@ -1780,6 +1940,33 @@
         <div class="tc reveal rd2">
           <div>
             <div class="tc-mk">"</div>
+            <div class="tc-stars">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14 2 9.27l6.91-1.01z"
+                />
+              </svg>
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14 2 9.27l6.91-1.01z"
+                />
+              </svg>
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14 2 9.27l6.91-1.01z"
+                />
+              </svg>
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14 2 9.27l6.91-1.01z"
+                />
+              </svg>
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14 2 9.27l6.91-1.01z"
+                />
+              </svg>
+            </div>
             <p class="tc-body">
               Her attention to detail and understanding of ecommerce best
               practices made all the difference. I'd recommend her to any D2C
@@ -1794,6 +1981,33 @@
         <div class="tc reveal rd3">
           <div>
             <div class="tc-mk">"</div>
+            <div class="tc-stars">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14 2 9.27l6.91-1.01z"
+                />
+              </svg>
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14 2 9.27l6.91-1.01z"
+                />
+              </svg>
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14 2 9.27l6.91-1.01z"
+                />
+              </svg>
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14 2 9.27l6.91-1.01z"
+                />
+              </svg>
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14 2 9.27l6.91-1.01z"
+                />
+              </svg>
+            </div>
             <p class="tc-body">
               From concept to launch, Kavya made the entire process smooth and
               enjoyable. The final product exceeded our expectations in every
@@ -1817,6 +2031,9 @@
             If something isn't answered here, the easiest thing is to just reach
             out directly.
           </p>
+          <div class="faq-illus reveal reveal-fade">
+            <img src="assets/images/faq_compressed.png" alt="FAQ illustration" />
+          </div>
         </div>
         <div class="reveal rd1">
           <div class="fi">
